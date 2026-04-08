@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jane Wambugu - CV</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html { scroll-behavior: smooth; }
+    
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      background: linear-gradient(135deg, #2a2521 0%, #3d3530 50%, #2a2521 100%);
+      color: #e5e7eb;
+      min-height: 100vh;
+    }
+
+    /* Fixed Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(42, 37, 33, 0.75);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+      animation: slideDown 0.6s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #D4A574 0%, #E8B4D4 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #3d2f35;
+      box-shadow: 0 8px 20px rgba(212, 165, 116, 0.3);
+      border: 2px solid rgba(232, 180, 212, 0.6);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .header-avatar:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 25px rgba(212, 165, 116, 0.4);
+    }
+
+    /* You can also use an image instead:
+    .header-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    */
+
+    .header-title h1 {
+      font-size: 20px;
+      color: #f5f5f0;
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+
+    .header-title p {
+      font-size: 12px;
+      color: #b8a89a;
+      margin: 2px 0 0 0;
+    }
+
+    /* Main content margin to account for fixed header */
+    .container { 
+      display: grid; 
+      grid-template-columns: 280px 1fr; 
+      max-width: 1100px; 
+      margin: 80px auto 40px;
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: rgba(61, 47, 53, 0.5);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 30px 20px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+      animation: fadeInLeft 0.8s ease-out;
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .sidebar h1 { 
+      font-size: 18px; 
+      margin-bottom: 5px;
+      color: #f5f5f0;
+    }
+    
+    .sidebar p { 
+      font-size: 12px; 
+      color: #b8a89a; 
+      margin-bottom: 20px; 
+    }
+
+    .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin: 20px 0 10px;
+      color: #D4A574;
+      font-weight: 600;
+    }
+
+    .sidebar ul { list-style: none; }
+    .sidebar li { 
+      font-size: 13px; 
+      margin-bottom: 8px; 
+      color: #d1c7b6;
+      transition: all 0.3s ease;
+      padding-left: 8px;
+    }
+
+    .sidebar li:hover {
+      color: #D4A574;
+      transform: translateX(5px);
+    }
+
+    /* Main */
+    .main { 
+      animation: fadeInRight 0.8s ease-out;
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .main h2 {
+      font-size: 28px;
+      margin: 35px 0 15px;
+      color: #D4A574;
+      position: relative;
+      padding-bottom: 12px;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+
+    .main h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #D4A574 0%, #E8B4D4 100%);
+      border-radius: 2px;
+      animation: expandWidth 0.6s ease-out;
+    }
+
+    @keyframes expandWidth {
+      from {
+        width: 0;
+      }
+      to {
+        width: 60px;
+      }
+    }
+
+    .main p { 
+      font-size: 14px; 
+      line-height: 1.7; 
+      margin-bottom: 20px; 
+      color: #d1c7b6;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .job, .project { 
+      margin-bottom: 25px;
+      padding: 18px;
+      background: rgba(61, 47, 53, 0.4);
+      border-radius: 12px;
+      border-left: 3px solid #D4A574;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-left: 3px solid #D4A574;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .job:hover, .project:hover {
+      background: rgba(61, 47, 53, 0.6);
+      border-top: 1px solid rgba(232, 180, 212, 0.3);
+      border-right: 1px solid rgba(212, 165, 116, 0.2);
+      border-bottom: 1px solid rgba(232, 180, 212, 0.2);
+      box-shadow: 0 12px 35px rgba(212, 165, 116, 0.15);
+      transform: translateY(-5px);
+    }
+
+    .job h3, .project h3 { 
+      font-size: 16px; 
+      color: #f5f5f0;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .meta { 
+      font-size: 12px; 
+      color: #9a8877; 
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+
+    ul { padding-left: 18px; }
+    ul li { 
+      font-size: 13px; 
+      margin-bottom: 7px;
+      color: #d1c7b6;
+      transition: all 0.3s ease;
+    }
+
+    ul li:before {
+      content: '▸ ';
+      color: #D4A574;
+      margin-right: 8px;
+      font-weight: bold;
+    }
+
+    ul li:hover {
+      color: #D4A574;
+      transform: translateX(5px);
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(212, 165, 116, 0.15);
+      color: #D4A574;
+      padding: 6px 12px;
+      margin: 5px 5px 5px 0;
+      font-size: 11px;
+      border-radius: 20px;
+      border: 1px solid rgba(212, 165, 116, 0.4);
+      transition: all 0.3s ease;
+      font-weight: 500;
+      cursor: default;
+    }
+
+    .badge:hover {
+      background: rgba(212, 165, 116, 0.25);
+      box-shadow: 0 4px 12px rgba(212, 165, 116, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Loading animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(42, 37, 33, 0.3);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #D4A574 0%, #E8B4D4 100%);
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, #E8B4D4 0%, #D4A574 100%);
+      box-shadow: 0 0 8px rgba(212, 165, 116, 0.4);
+    }
+
+    @media print {
+      .header { display: none; }
+      body { background: white; }
+      .container { margin: 0; }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+        margin-top: 110px;
+      }
+
+      .sidebar {
+        position: relative;
+        top: auto;
+      }
+
+      .header {
+        padding: 12px 20px;
+      }
+
+      .header-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+      }
+
+      .header-title h1 {
+        font-size: 16px;
+      }
+
+      .main h2 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Fixed Header -->
+<div class="header">
+  <div class="header-avatar">JW</div>
+  <div class="header-title">
+    <h1>Jane Wambugu</h1>
+    <p>Full-Stack Developer | UI/UX Designer</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h1>Jane Wambugu</h1>
+    <p>Full-Stack Developer | UI/UX | AI | 3D</p>
+
+    <div class="section-title">Contact</div>
+    <ul>
+      <li>Nairobi, Kenya</li>
+      <li>jane@janewambugu.com</li>
+      <li>+254 715 121 276</li>
+    </ul>
+
+    <div class="section-title">Skills</div>
+    <div>
+      <span class="badge">React</span>
+      <span class="badge">Node.js</span>
+      <span class="badge">TypeScript</span>
+      <span class="badge">MongoDB</span>
+      <span class="badge">Three.js</span>
+      <span class="badge">Babylon.js</span>
+      <span class="badge">AI APIs</span>
+      <span class="badge">UI/UX</span>
+    </div>
+
+    <div class="section-title">Core Strength</div>
+    <ul>
+      <li>Full-Stack Systems</li>
+      <li>Design Thinking</li>
+      <li>3D Interaction</li>
+      <li>Scalable Architecture</li>
+    </ul>
+
+    <div class="section-title">Education</div>
+    <ul>
+      <li>Diploma in ICT</li>
+      <li>Thika TTI</li>
+    </ul>
+
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+
+    <h2>Profile</h2>
+    <p>
+      Full-stack developer building scalable web systems, immersive 3D experiences, and user-focused applications. Strong in both frontend and backend, with growing focus on AI-driven features and UI/UX systems.
+    </p>
+
+    <h2>Experience</h2>
+
+    <div class="job">
+      <h3>Developer Associate</h3>
+      <div class="meta">Esoma Solutions | 2023 – Present</div>
+      <ul>
+        <li>Built scalable platforms and APIs</li>
+        <li>Improved dev efficiency by 25%</li>
+        <li>Led UI architecture decisions</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <h3>Front-End Developer</h3>
+      <div class="meta">Esoma Solutions | 2023</div>
+      <ul>
+        <li>Developed high-traffic platform</li>
+        <li>Improved system performance</li>
+      </ul>
+    </div>
+
+    <h2>Projects</h2>
+
+    <div class="project">
+      <h3>AngaCast</h3>
+      <p>Weather app with real-time APIs and optimized UI performance.</p>
+    </div>
+
+    <div class="project">
+      <h3>MyDuka Lite</h3>
+      <p>Retail platform with M-Pesa integration.</p>
+    </div>
+
+    <div class="project">
+      <h3>3D & Game Development</h3>
+      <p>Built interactive 3D web experiences using Three.js and Babylon.js.</p>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
