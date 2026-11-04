@@ -108,10 +108,17 @@
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <h2 class="section-title">Games & Projects</h2>
+        <p class="projects-intro">Explore a selection of coding builds and graphic design work.</p>
+        <div class="project-filters" role="group" aria-label="Filter portfolio projects">
+            <button class="project-filter active" type="button" data-project-filter="all" aria-pressed="true">All work</button>
+            <button class="project-filter" type="button" data-project-filter="coding" aria-pressed="false">Coding</button>
+            <button class="project-filter" type="button" data-project-filter="design" aria-pressed="false">Graphic Design</button>
+        </div>
+        <p class="project-filter-status" id="projectFilterStatus" role="status" aria-live="polite">Showing all projects.</p>
         <div class="projects-grid">
 
             <!-- game 1-->
-            <div class="project-card">
+            <div class="project-card" data-project-category="coding">
                 <img src="images/tictoe.webp" alt="Project 3" class="project-img" loading="lazy" decoding="async">
                 <div class="project-content">
                     <h3 class="project-title">Tic-Tac-Toe Game</h3>
@@ -131,7 +138,7 @@
             </div>
 
             <!-- game 2-->
-            <div class="project-card">
+            <div class="project-card" data-project-category="coding">
                 <img src="images/odd-game.webp" alt="Project 3" class="project-img" loading="lazy" decoding="async">
                 <div class="project-content">
                     <h3 class="project-title">ODD NUMBER NINJA</h3>
@@ -151,7 +158,7 @@
             </div>
 
             <!-- game 3-->
-            <div class="project-card">
+            <div class="project-card" data-project-category="coding">
                 <img src="images/even-game.webp" alt="Project 3" class="project-img" loading="lazy" decoding="async">
                 <div class="project-content">
                     <h3 class="project-title">EVEN NUMBER NINJA</h3>
@@ -171,7 +178,7 @@
             </div>
 
             <!-- game 4 -->
-            <div class="project-card">
+            <div class="project-card" data-project-category="coding">
                 <img src="images/bug-game.webp" alt="Project 3" class="project-img" loading="lazy" decoding="async">
                 <div class="project-content">
                     <h3 class="project-title">COUNT & CRAWL</h3>
@@ -192,7 +199,7 @@
             </div>
 
             <!-- game 5 -->
-            <div class="project-card">
+            <div class="project-card" data-project-category="coding">
                 <img src="images/animal-game.webp" alt="Project 3" class="project-img" loading="lazy" decoding="async">
                 <div class="project-content">
                     <h3 class="project-title">Mammal-Crash</h3>
@@ -238,7 +245,7 @@
 
 
                     <!-- MTT -->
-                    <div class="project-card">
+                    <div class="project-card" data-project-category="coding">
                         <img src="https://miraditechtribe.com/logo.webp" alt="MTT" class="project-img">
                         <div class="project-content">
                             <h3 class="project-title">Miradi Tech Tribe</h3>
@@ -266,7 +273,7 @@
             
 
             <!-- dukalite -->
-            <div class="project-card">
+            <div class="project-card" data-project-category="coding">
                 <img src="images/management-app.webp" alt="Project 2" class="project-img" loading="lazy" decoding="async">
                 <div class="project-content">
                     <h3 class="project-title">Dukalite</h3>
@@ -286,7 +293,7 @@
             </div>
             
             <!--churn-->
-            <div class="project-card">
+            <div class="project-card" data-project-category="coding">
                 <img src="images/churn.webp" alt="Project 2" class="project-img" loading="lazy" decoding="async">
                 <div class="project-content">
                     <h3 class="project-title">Customer Churn Prediction</h3>
@@ -307,7 +314,7 @@
             </div>
 
             <!-- elima360 PWA-->
-            <div class="project-card">
+            <div class="project-card" data-project-category="coding">
                 <img src="images/weather-app.webp" alt="Project 4" class="project-img" loading="lazy" decoding="async">
                 <div class="project-content">
                     <h3 class="project-title">Weather App</h3>
@@ -327,7 +334,7 @@
                 </div>
             </div>
         
-                <div class="project-card">
+                <div class="project-card" data-project-category="coding">
                     <img src="images/image-system.webp" alt="Project 4" class="project-img" loading="lazy" decoding="async">
                     <div class="project-content">
                         <h3 class="project-title">Image Classification System</h3>
@@ -364,6 +371,35 @@
                             </div>
                         </div>
                     </div>-->
+
+            <article class="project-card design-gallery-card" data-project-category="design">
+                <img src="images/design-brand-concept.svg" alt="Graphic design artwork for a business card" class="project-img" loading="lazy" decoding="async">
+                <div class="project-content">
+                    <span class="design-gallery-kicker">PRINT DESIGN</span>
+                    <h3 class="project-title">Business Cards</h3>
+                    <p class="project-desc">Distinctive, professional business cards designed to make a memorable first impression and keep key contact details easy to find.</p>
+                    <div class="project-tags"><span class="project-tag">Custom layouts</span><span class="project-tag">Print-ready artwork</span></div>
+                </div>
+            </article>
+            <article class="project-card design-gallery-card" data-project-category="design">
+                <img src="images/design-social-concept.svg" alt="Graphic design artwork for a promotional flyer" class="project-img" loading="lazy" decoding="async">
+                <div class="project-content">
+                    <span class="design-gallery-kicker">PROMOTIONAL DESIGN</span>
+                    <h3 class="project-title">Flyers &amp; Promotions</h3>
+                    <p class="project-desc">Eye-catching flyers that organize event and business information into a clear, lively layout made to get noticed.</p>
+                    <div class="project-tags"><span class="project-tag">Promotional layouts</span><span class="project-tag">Clear messaging</span></div>
+                </div>
+            </article>
+            <article class="project-card design-gallery-card" data-project-category="design">
+                <img src="images/design-editorial-concept.svg" alt="Graphic design artwork for social media posts and advertisements" class="project-img" loading="lazy" decoding="async">
+                <div class="project-content">
+                    <span class="design-gallery-kicker">DIGITAL &amp; SOCIAL</span>
+                    <h3 class="project-title">Social Posts &amp; Ads</h3>
+                    <p class="project-desc">On-brand social media graphics and ads built for quick recognition, clear visual hierarchy, and platform-friendly formats.</p>
+                    <div class="project-tags"><span class="project-tag">Social content</span><span class="project-tag">Digital advertising</span></div>
+                </div>
+            </article>
+        </div>
     </section>
 
     <!-- Skills Section -->
@@ -484,21 +520,8 @@
                 </div>
                 <div class="design-work">
                     <h3 class="category-title design-projects-title">Featured Design Work</h3>
-<p class="design-intro">I create practical, polished graphics that help businesses show up with confidence—from printed business cards and flyers to attention-grabbing social media posts and ads.</p>
-        <div class="design-grid">
-            <article class="design-card">
-                <div class="design-art design-art-brand"><img src="images/design-brand-concept.svg" alt="Graphic design artwork for a business card" loading="lazy"><span class="design-art-label">PRINT / 01</span></div>
-                <div class="design-card-copy"><span class="design-kicker">PRINT DESIGN</span><h3>Business Cards</h3><p>Distinctive, professional business cards designed to make a memorable first impression and keep key contact details easy to find.</p><span class="design-note">Custom layouts · Print-ready artwork</span></div>
-            </article>
-            <article class="design-card">
-                <div class="design-art design-art-social"><img src="images/design-social-concept.svg" alt="Graphic design artwork for a promotional flyer" loading="lazy"><span class="design-art-label">PROMO / 02</span></div>
-                <div class="design-card-copy"><span class="design-kicker">PROMOTIONAL DESIGN</span><h3>Flyers &amp; Promotions</h3><p>Eye-catching flyers that organize event and business information into a clear, lively layout made to get noticed.</p><span class="design-note">Promotional layouts · Clear messaging</span></div>
-            </article>
-            <article class="design-card">
-                <div class="design-art design-art-editorial"><img src="images/design-editorial-concept.svg" alt="Graphic design artwork for a social media post and advertisement" loading="lazy"><span class="design-art-label">DIGITAL / 03</span></div>
-                <div class="design-card-copy"><span class="design-kicker">DIGITAL &amp; SOCIAL</span><h3>Social Posts &amp; Ads</h3><p>On-brand social media graphics and ads built for quick recognition, strong visual hierarchy, and platform-friendly formats.</p><span class="design-note">Social content · Digital advertising</span></div>
-            </article>
-        </div>
+                    <p class="design-intro">I create practical, polished graphics—from printed business cards and flyers to attention-grabbing social media posts and ads.</p>
+                    <a class="design-gallery-cta" href="#projects" data-show-design-projects>Explore the graphic design gallery <span aria-hidden="true">→</span></a>
                 </div>
             </div>
 

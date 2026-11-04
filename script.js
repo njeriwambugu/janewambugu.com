@@ -339,6 +339,48 @@ if (window.appInitialized) {
   }
 
   // ----------------------------
+  // PROJECT GALLERY FILTERS
+  // ----------------------------
+  function initProjectFilters() {
+    const filters = Array.from(document.querySelectorAll('[data-project-filter]'));
+    const cards = Array.from(document.querySelectorAll('#projects [data-project-category]'));
+    const status = document.getElementById('projectFilterStatus');
+    if (!filters.length || !cards.length) return;
+
+    const applyFilter = (category) => {
+      let visibleCount = 0;
+      cards.forEach((card) => {
+        const visible = category === 'all' || card.dataset.projectCategory === category;
+        card.hidden = !visible;
+        if (visible) visibleCount += 1;
+      });
+
+      filters.forEach((filter) => {
+        const selected = filter.dataset.projectFilter === category;
+        filter.classList.toggle('active', selected);
+        filter.setAttribute('aria-pressed', String(selected));
+      });
+
+      if (status) {
+        const label = category === 'all' ? 'all' : category === 'design' ? 'graphic design' : 'coding';
+        status.textContent = category === 'all'
+          ? `Showing all ${visibleCount} projects.`
+          : `Showing ${visibleCount} ${label} projects.`;
+      }
+    };
+
+    filters.forEach((filter) => {
+      filter.addEventListener('click', () => applyFilter(filter.dataset.projectFilter));
+    });
+
+    document.querySelectorAll('[data-show-design-projects]').forEach((link) => {
+      link.addEventListener('click', () => applyFilter('design'));
+    });
+
+    applyFilter('all');
+  }
+
+  // ----------------------------
   // PROJECTS ANIMATION
   // ----------------------------
   function initProjectsAnimation() {
@@ -409,6 +451,7 @@ if (window.appInitialized) {
     initCodeBackground();
     initSkillsTabs();
     initSkillsAnimation();
+    initProjectFilters();
     initProjectsAnimation();
     initScrollAnimations();
   }

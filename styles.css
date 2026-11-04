@@ -2070,3 +2070,90 @@ body {
     height: 0;
     background: transparent;
 }
+
+
+/* Filterable coding and graphic-design project gallery */
+.projects-intro {
+    max-width: 700px;
+    margin: -1.2rem auto 1.4rem;
+    color: #d1c7b6;
+    line-height: 1.65;
+    text-align: center;
+}
+
+.project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .7rem;
+    margin: 0 auto .5rem;
+}
+
+.project-filter {
+    min-height: 44px;
+    min-width: 100px;
+    padding: .65rem 1.1rem;
+    border: 1px solid rgba(212, 165, 116, .38);
+    border-radius: 999px;
+    background: rgba(42, 37, 33, .72);
+    color: #f5f1e9;
+    font: inherit;
+    font-weight: 650;
+    cursor: pointer;
+    transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.project-filter:hover { transform: translateY(-1px); border-color: #e8b4d4; }
+.project-filter.active {
+    border-color: #e8b4d4;
+    background: linear-gradient(125deg, rgba(212, 165, 116, .26), rgba(232, 180, 212, .2));
+    color: #fff8ed;
+    box-shadow: 0 0 0 2px rgba(232, 180, 212, .08);
+}
+.project-filter:focus-visible,
+.design-gallery-cta:focus-visible { outline: 3px solid #fff8ed; outline-offset: 3px; }
+.project-filter-status {
+    min-height: 1.5em;
+    margin: 0 0 1.5rem;
+    color: #c3b6a8;
+    font-size: .88rem;
+    text-align: center;
+}
+.project-card[hidden] { display: none !important; }
+.design-gallery-kicker {
+    margin-bottom: .45rem;
+    color: #e8b4d4;
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+}
+.design-gallery-card .project-img { background: #37302d; object-fit: cover; }
+.design-gallery-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .65rem;
+    min-height: 46px;
+    margin-top: .4rem;
+    padding: .7rem 1.1rem;
+    border: 1px solid rgba(255, 240, 220, .3);
+    border-radius: 999px;
+    background: linear-gradient(135deg, #d4a574, #e8b4d4);
+    color: #282124;
+    font-weight: 750;
+    text-decoration: none;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.design-gallery-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(212, 165, 116, .22); }
+
+@media (max-width: 560px) {
+    .project-filter { flex: 1 1 35%; }
+    .projects-intro { margin-top: -1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-filter,
+    .design-gallery-cta { transition: none; }
+    .project-filter:hover,
+    .design-gallery-cta:hover { transform: none; }
+}
