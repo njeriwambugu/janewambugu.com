@@ -1837,3 +1837,127 @@ section {
 }
 
 .design-projects-title { margin-bottom: 1rem; }
+
+
+/* Mobile layout and image performance refinements */
+@media (max-width: 768px) {
+    section:not(.hero) {
+        min-height: auto;
+        padding: clamp(3.5rem, 9vw, 5rem) clamp(1rem, 5vw, 2rem);
+    }
+
+    .hero {
+        min-height: 100svh;
+        padding: 6.5rem 1rem 3rem;
+    }
+
+    .hero-content {
+        align-items: center;
+        gap: clamp(1.5rem, 6vw, 2.5rem);
+    }
+
+    .hero-image-container,
+    .hero-animation-container {
+        width: 100%;
+        flex: 0 0 auto;
+    }
+
+    .profile-container {
+        width: min(78vw, 300px);
+        max-width: 300px;
+        padding: 8px;
+    }
+
+    .profile-img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+        object-fit: cover;
+    }
+
+    .name,
+    .hero-text h1 {
+        font-size: clamp(2rem, 9vw, 3.2rem);
+        overflow-wrap: anywhere;
+    }
+
+    .slogan {
+        font-size: clamp(1.1rem, 5vw, 1.5rem);
+        line-height: 1.45;
+    }
+
+    .slogan span { min-width: 0; }
+
+    .section-title {
+        margin-bottom: clamp(1.5rem, 6vw, 2.5rem);
+        font-size: clamp(1.9rem, 7vw, 2.6rem);
+    }
+
+    .projects-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .project-card { min-width: 0; }
+
+    .project-img {
+        height: auto;
+        aspect-ratio: 16 / 10;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(.65rem, 3vw, 1rem);
+    }
+
+    .skill-item {
+        min-width: 0;
+        padding: 1rem .65rem;
+    }
+
+    .skill-name {
+        overflow-wrap: anywhere;
+        line-height: 1.35;
+    }
+
+    .skills-selector { gap: .6rem; }
+
+    .skills-tab {
+        flex: 1 1 calc(50% - .6rem);
+        min-width: 0;
+        padding: .7rem .55rem;
+        line-height: 1.25;
+    }
+
+    .skills-category { min-width: 0; }
+
+    .design-intro,
+    .design-skills-intro {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .design-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1rem;
+    }
+
+    .design-card-copy { padding: 1.1rem; }
+    .design-card-copy p { min-height: 0; }
+}
+
+@media (max-width: 380px) {
+    .nav-container { padding-inline: 12px; }
+    .skills-category { padding: 14px; }
+    .skill-icon { width: 48px; height: 48px; }
+    .skill-name { font-size: .9rem; }
+    .design-art-label { right: 10px; bottom: 10px; }
+}
+
+
+@media (max-width: 560px) {
+    .radial-intro {
+        --stage-size: min(60vw, 240px);
+        --center-size: calc(var(--orbit-radius) * 1.26);
+        --item-size: clamp(2.35rem, 10vw, 2.8rem);
+    }
+}
