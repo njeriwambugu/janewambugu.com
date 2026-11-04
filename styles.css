@@ -1818,3 +1818,13 @@ section {
     .design-card:hover,
     .design-card:hover .design-art img { transform: none; }
 }
+
+.skill-icon-adobe {
+    border-radius: 14px;
+    background: #211d26;
+    color: #f0a0c0;
+    border: 1px solid rgba(240, 160, 192, .5);
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
