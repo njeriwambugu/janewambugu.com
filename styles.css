@@ -1828,3 +1828,12 @@ section {
     font-size: 1.1rem;
     font-weight: 700;
 }
+
+/* Keep the design portfolio visually grouped inside the Skills section. */
+.design-work {
+    margin-top: clamp(2.5rem, 6vw, 4.5rem);
+    padding-top: clamp(1.75rem, 4vw, 3rem);
+    border-top: 1px solid rgba(212, 165, 116, .28);
+}
+
+.design-projects-title { margin-bottom: 1rem; }
