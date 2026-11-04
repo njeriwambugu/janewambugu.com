@@ -547,6 +547,52 @@
         <h2 class="section-title">Get In Touch</h2>
         <div class="contact-content">
             <p class="contact-intro-text">I'm open to new opportunities and collaborations. Whether you have a project in mind, a question about development, or just want to say hello, I'd love to hear from you.</p>
+            <div class="client-inquiry-card">
+                <div class="inquiry-heading">
+                    <span class="inquiry-eyebrow">GRAPHIC DESIGN INQUIRY</span>
+                    <h3>Let’s make something memorable.</h3>
+                    <p>Share a few details about your business cards, flyers, social posts, or ads.</p>
+                </div>
+                <form class="client-inquiry-form" id="clientInquiryForm">
+                    <div class="inquiry-fields">
+                        <div class="inquiry-field">
+                            <label for="clientName">Your name</label>
+                            <input id="clientName" name="name" type="text" autocomplete="name" maxlength="100" required>
+                        </div>
+                        <div class="inquiry-field">
+                            <label for="clientEmail">Email address</label>
+                            <input id="clientEmail" name="email" type="email" autocomplete="email" maxlength="150" required>
+                        </div>
+                        <div class="inquiry-field">
+                            <label for="designService">What do you need designed?</label>
+                            <select id="designService" name="service" required>
+                                <option value="" selected disabled>Choose a service</option>
+                                <option>Business cards</option>
+                                <option>Flyer or poster</option>
+                                <option>Social media posts</option>
+                                <option>Social media ads</option>
+                                <option>Something else</option>
+                            </select>
+                        </div>
+                        <div class="inquiry-field">
+                            <label for="projectTimeline">When do you need it?</label>
+                            <select id="projectTimeline" name="timeline">
+                                <option>I'm flexible</option>
+                                <option>Within 1–2 weeks</option>
+                                <option>Within a month</option>
+                                <option>Let's discuss timing</option>
+                            </select>
+                        </div>
+                        <div class="inquiry-field inquiry-field-wide">
+                            <label for="projectBrief">A little about your project</label>
+                            <textarea id="projectBrief" name="brief" rows="5" maxlength="1000" placeholder="What are you promoting? Any ideas, colors, sizes, or important details to include?" required></textarea>
+                        </div>
+                    </div>
+                    <button class="inquiry-submit" type="submit">Prepare my inquiry <span aria-hidden="true">→</span></button>
+                    <p class="inquiry-note">This opens a pre-filled email to Jane. Your message is sent only if you press Send in your email app.</p>
+                    <p class="inquiry-status" id="inquiryStatus" role="status" aria-live="polite"></p>
+                </form>
+            </div>
             <div class="radial-intro" aria-label="Community orbit intro">
                 <div class="radial-intro-focus" aria-hidden="true">
                     <span class="radial-intro-icon">
