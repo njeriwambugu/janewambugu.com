@@ -39,6 +39,7 @@
     <ul class="nav-menu">
       <li><a href="#about" class="nav-link">About</a></li>
       <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#design" class="nav-link">Graphic Design</a></li>
       <li><a href="#skills" class="nav-link">Skills</a></li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
@@ -55,6 +56,7 @@
     <div class="mobile-nav-menu">
       <a href="#about" class="mobile-nav-link">About</a>
       <a href="#projects" class="mobile-nav-link">Projects</a>
+      <a href="#design" class="mobile-nav-link">Graphic Design</a>
       <a href="#skills" class="mobile-nav-link">Skills</a>
       <a href="#contact" class="mobile-nav-link">Contact</a>
     </div>
@@ -68,7 +70,9 @@
         <div class="hero-content">
             <div class="hero-image-container">
                 <div class="profile-container">
-                    <img src="images/me.png" alt="Profile Picture" class="profile-img">
+                    <span class="portrait-shape portrait-shape-one" aria-hidden="true"></span>
+                    <span class="portrait-shape portrait-shape-two" aria-hidden="true"></span>
+                    <img src="images/me.png" alt="Jane N. Wambugu" class="profile-img">
                 </div>
             </div>
             <div class="hero-animation-container">
@@ -364,6 +368,26 @@
                     </div>-->
     </section>
 
+    <!-- Graphic Design Concept Showcase -->
+    <section id="design" class="design-showcase">
+        <h2 class="section-title">Graphic Design</h2>
+        <p class="design-intro">A visual playground for brand identity, social graphics, and editorial layouts. These are concept placeholders—not completed client work. Replace each card with your own design projects when ready.</p>
+        <div class="design-grid">
+            <article class="design-card">
+                <div class="design-art design-art-brand"><img src="images/design-brand-concept.svg" alt="Abstract sample brand identity concept artwork" loading="lazy"><span class="design-art-label">BRAND / 01</span></div>
+                <div class="design-card-copy"><span class="design-kicker">CONCEPT PLACEHOLDER</span><h3>Brand Identity Study</h3><p>A sample direction exploring a bold wordmark, warm color, and a flexible visual system.</p><span class="design-note">Replace with your project details</span></div>
+            </article>
+            <article class="design-card">
+                <div class="design-art design-art-social"><img src="images/design-social-concept.svg" alt="Abstract sample social campaign concept artwork" loading="lazy"><span class="design-art-label">SOCIAL / 02</span></div>
+                <div class="design-card-copy"><span class="design-kicker">CONCEPT PLACEHOLDER</span><h3>Social Campaign</h3><p>A sample campaign layout focused on clear hierarchy, expressive shapes, and scroll-stopping color.</p><span class="design-note">Replace with your project details</span></div>
+            </article>
+            <article class="design-card">
+                <div class="design-art design-art-editorial"><img src="images/design-editorial-concept.svg" alt="Abstract sample editorial layout concept artwork" loading="lazy"><span class="design-art-label">EDITORIAL / 03</span></div>
+                <div class="design-card-copy"><span class="design-kicker">CONCEPT PLACEHOLDER</span><h3>Editorial Layout</h3><p>A sample composition pairing confident typography with a considered grid and visual rhythm.</p><span class="design-note">Replace with your project details</span></div>
+            </article>
+        </div>
+    </section>
+
     <!-- Skills Section -->
     <section id="skills" class="skills">
         <h2 class="section-title">Skills</h2>
@@ -375,6 +399,8 @@
                     aria-selected="false">Backend</button>
                 <button type="button" class="skills-tab" data-skill-target="tools"
                     aria-selected="false">Tools</button>
+                <button type="button" class="skills-tab" data-skill-target="design"
+                    aria-selected="false">Graphic Design</button>
             </div>
 
             <!-- Frontend Skills -->
@@ -461,6 +487,19 @@
                         </div>
                         <p class="skill-name">MySQL</p>
                     </div>
+                </div>
+            </div>
+
+            <!-- Graphic Design Skills -->
+            <div class="skills-category" data-skill-panel="design" hidden>
+                <h3 class="category-title">Graphic Design</h3>
+                <p class="design-skills-intro">Visual skills and creative practice. Figma is currently the only design tool listed; add more tools you use when you are ready.</p>
+                <div class="skills-grid">
+                    <div class="skill-item"><div class="skill-icon skill-icon-badge skill-icon-design" aria-hidden="true">Aa</div><p class="skill-name">Typography</p></div>
+                    <div class="skill-item"><div class="skill-icon skill-icon-badge skill-icon-design" aria-hidden="true">▦</div><p class="skill-name">Layout &amp; Composition</p></div>
+                    <div class="skill-item"><div class="skill-icon skill-icon-badge skill-icon-design" aria-hidden="true">◉</div><p class="skill-name">Color &amp; Visual Hierarchy</p></div>
+                    <div class="skill-item"><div class="skill-icon skill-icon-badge skill-icon-design" aria-hidden="true">✳</div><p class="skill-name">Brand &amp; Social Concepts</p></div>
+                    <div class="skill-item"><div class="skill-icon"><img src="images/logos/Figma.svg" alt="" loading="lazy"></div><p class="skill-name">Figma</p></div>
                 </div>
             </div>
 
