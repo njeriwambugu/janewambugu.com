@@ -303,42 +303,6 @@ if (window.appInitialized) {
   }
 
   // ----------------------------
-  // CONTACT LINKS
-  // ----------------------------
-  function initContactLinks() {
-    const inquiryForm = document.getElementById('clientInquiryForm');
-    if (!inquiryForm) return;
-
-    inquiryForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-
-      const values = new FormData(inquiryForm);
-      const name = String(values.get('name') || '').trim();
-      const email = String(values.get('email') || '').trim();
-      const service = String(values.get('service') || '').trim();
-      const timeline = String(values.get('timeline') || '').trim();
-      const brief = String(values.get('brief') || '').trim();
-      const subject = `Graphic design inquiry: ${service}`;
-      const body = [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Service: ${service}`,
-        `Timeline: ${timeline}`,
-        '',
-        'Project details:',
-        brief
-      ].join('\n');
-      const mailto = `mailto:jane@miraditechtribe.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-      const status = document.getElementById('inquiryStatus');
-      if (status) {
-        status.textContent = 'Opening a pre-filled email. Review your details, then press Send in your email app.';
-      }
-      window.location.href = mailto;
-    });
-  }
-
-  // ----------------------------
   // PROJECT GALLERY FILTERS
   // ----------------------------
   function initProjectFilters() {
@@ -371,10 +335,6 @@ if (window.appInitialized) {
 
     filters.forEach((filter) => {
       filter.addEventListener('click', () => applyFilter(filter.dataset.projectFilter));
-    });
-
-    document.querySelectorAll('[data-show-design-projects]').forEach((link) => {
-      link.addEventListener('click', () => applyFilter('design'));
     });
 
     applyFilter('all');
@@ -444,7 +404,6 @@ if (window.appInitialized) {
   // ----------------------------
   function initializeApp() {
     initMobileMenu();
-    initContactLinks();
     initSmoothScrolling();
     initNavbarScroll();
     initTypingAnimation();
