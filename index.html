@@ -39,7 +39,6 @@
     <ul class="nav-menu">
       <li><a href="#about" class="nav-link">About</a></li>
       <li><a href="#approach" class="nav-link">Approach</a></li>
-      <li><a href="#motion" class="nav-link">3D &amp; Motion</a></li>
       <li><a href="#projects" class="nav-link">Projects</a></li>
       <li><a href="#skills" class="nav-link">Skills</a></li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -57,7 +56,6 @@
     <div class="mobile-nav-menu">
       <a href="#about" class="mobile-nav-link">About</a>
       <a href="#approach" class="mobile-nav-link">Approach</a>
-      <a href="#motion" class="mobile-nav-link">3D &amp; Motion</a>
       <a href="#projects" class="mobile-nav-link">Projects</a>
       <a href="#skills" class="mobile-nav-link">Skills</a>
       <a href="#contact" class="mobile-nav-link">Contact</a>
@@ -72,8 +70,6 @@
         <div class="hero-content">
             <div class="hero-image-container">
                 <div class="profile-container">
-                    <span class="portrait-shape portrait-shape-one" aria-hidden="true"></span>
-                    <span class="portrait-shape portrait-shape-two" aria-hidden="true"></span>
                     <img src="images/me-480.webp" srcset="images/me-320.webp 320w, images/me-480.webp 480w, images/me.webp 882w" sizes="(max-width: 768px) 78vw, (max-width: 1200px) 38vw, 450px" alt="Jane N. Wambugu" class="profile-img" width="450" height="450" fetchpriority="high" decoding="async">
                 </div>
             </div>
@@ -105,74 +101,36 @@
     <!-- My Approach Section -->
     <section id="approach" class="approach">
         <div class="approach-heading">
-            <span class="approach-eyebrow">THOUGHTFUL BY DESIGN</span>
             <h2 class="section-title">My Approach</h2>
-            <p class="approach-intro">Good digital work is built with intention. I move from understanding the problem to shaping a clear visual idea, then bring it to life and refine every detail.</p>
+            <p class="approach-intro">I start by understanding the goal and who it’s for.</p>
         </div>
         <ol class="approach-process" aria-label="My creative process">
             <li class="approach-stage">
                 <span class="approach-step" aria-hidden="true">01</span>
                 <h3>Discover</h3>
-                <p>Understand the people, purpose, and context behind the project.</p>
+                <p>I learn what the project needs and who it’s for.</p>
             </li>
             <li class="approach-stage">
                 <span class="approach-step" aria-hidden="true">02</span>
                 <h3>Define</h3>
-                <p>Turn the need into a focused direction and a clear visual message.</p>
+                <p>I agree on the goal and what a good result looks like.</p>
             </li>
             <li class="approach-stage">
                 <span class="approach-step" aria-hidden="true">03</span>
                 <h3>Design</h3>
-                <p>Build thoughtful layouts, strong hierarchy, and a consistent visual language.</p>
+                <p>I shape the layout and visual direction.</p>
             </li>
             <li class="approach-stage">
                 <span class="approach-step" aria-hidden="true">04</span>
                 <h3>Animate</h3>
-                <p>Use purposeful motion and Blender-based 3D to give ideas depth and presence.</p>
+                <p>I add movement when it helps the idea come across.</p>
             </li>
             <li class="approach-stage">
                 <span class="approach-step" aria-hidden="true">05</span>
                 <h3>Refine</h3>
-                <p>Polish the details so the final experience feels clear, cohesive, and considered.</p>
+                <p>I test the details and polish the finished work.</p>
             </li>
         </ol>
-        <p class="approach-signoff">A considered idea. A clear visual system. Motion with meaning.</p>
-    </section>
-
-    <!-- Blender and 3D Motion Showcase -->
-    <section id="motion" class="motion-showcase">
-        <div class="motion-heading">
-            <span class="approach-eyebrow">DIMENSION, LIGHT &amp; MOVEMENT</span>
-            <h2 class="section-title">3D &amp; Motion</h2>
-            <p class="motion-intro">A dedicated space for my Blender and motion-design practice—exploring how form, light, material, and timing can give an idea a stronger presence.</p>
-        </div>
-        <div class="motion-showcase-layout">
-            <div class="motion-copy">
-                <span class="motion-kicker">BLENDER · 3D STUDIES</span>
-                <h3>Form in motion.</h3>
-                <p>I’m familiar with Blender for exploring three-dimensional form, materials, lighting, and animation. I treat movement as part of the design language: a way to guide attention, establish rhythm, and add depth with purpose.</p>
-                <ul class="motion-capabilities" aria-label="Areas explored in Blender">
-                    <li><span aria-hidden="true">01</span> Form &amp; modelling</li>
-                    <li><span aria-hidden="true">02</span> Materials &amp; light</li>
-                    <li><span aria-hidden="true">03</span> Motion &amp; timing</li>
-                </ul>
-            </div>
-            <figure class="motion-study">
-                <figcaption class="motion-study-label"><span>3D MOTION STUDY</span><span>01 / FORM</span></figcaption>
-                <div class="motion-visual" role="img" aria-label="Abstract three-dimensional orb with animated orbital rings, representing a motion-design study">
-                    <div class="motion-viewport-grid" aria-hidden="true"></div>
-                    <div class="motion-artifact" aria-hidden="true">
-                        <span class="motion-orbit motion-orbit-one"><i></i></span>
-                        <span class="motion-orbit motion-orbit-two"><i></i></span>
-                        <span class="motion-sphere"></span>
-                        <span class="motion-cube"></span>
-                        <span class="motion-satellite"></span>
-                    </div>
-                    <span class="motion-visual-axis" aria-hidden="true">X&nbsp; / &nbsp;Y&nbsp; / &nbsp;Z</span>
-                </div>
-                <div class="motion-study-footer"><span>FORM</span><span>LIGHT</span><span>MOVEMENT</span></div>
-            </figure>
-        </div>
     </section>
 
     <!-- Projects Section -->
@@ -481,10 +439,14 @@
                     aria-selected="true">Frontend</button>
                 <button type="button" class="skills-tab" data-skill-target="backend"
                     aria-selected="false">Backend</button>
-                <button type="button" class="skills-tab" data-skill-target="tools"
-                    aria-selected="false">Tools</button>
+                <button type="button" class="skills-tab" data-skill-target="ai"
+                    aria-selected="false">AI</button>
                 <button type="button" class="skills-tab" data-skill-target="design"
                     aria-selected="false">Graphic Design</button>
+                <button type="button" class="skills-tab" data-skill-target="animation"
+                    aria-selected="false">Animation</button>
+                <button type="button" class="skills-tab" data-skill-target="tools"
+                    aria-selected="false">Tools</button>
             </div>
 
             <!-- Frontend Skills -->
@@ -574,24 +536,93 @@
                 </div>
             </div>
 
+            <!-- AI Skills -->
+            <div class="skills-category" data-skill-panel="ai" hidden>
+                <h3 class="category-title">AI</h3>
+                <p class="ai-skills-intro">AI, machine-learning, and scientific-computing tools I work with.</p>
+                <div class="skills-grid">
+                    <div class="skill-item"><div class="skill-icon"><img src="images/chatgpt-com-logo.png" alt="" loading="lazy"></div><p class="skill-name">ChatGPT</p></div>
+                    <div class="skill-item"><div class="skill-icon"><img src="images/logos/PyTorch.svg" alt="" loading="lazy"></div><p class="skill-name">PyTorch</p></div>
+                    <div class="skill-item"><div class="skill-icon"><img src="images/logos/TensorFlow.svg" alt="" loading="lazy"></div><p class="skill-name">TensorFlow</p></div>
+                    <div class="skill-item"><div class="skill-icon"><img src="images/logos/scikit-learn.svg" alt="" loading="lazy"></div><p class="skill-name">scikit-learn</p></div>
+                    <div class="skill-item"><div class="skill-icon"><img src="images/logos/NumPy.svg" alt="" loading="lazy"></div><p class="skill-name">NumPy</p></div>
+                    <div class="skill-item"><div class="skill-icon"><img src="images/logos/Higgsfield.png" alt="" loading="lazy"></div><p class="skill-name">Higgsfield</p></div>
+                </div>
+            </div>
+
             <!-- Graphic Design Skills -->
             <div class="skills-category" data-skill-panel="design" hidden>
                 <h3 class="category-title">Graphic Design</h3>
-                <p class="design-skills-intro">Visual design, image editing, motion, and 3D tools—grounded in strong composition and clear visual hierarchy.</p>
-                <div class="skills-grid">
-                    <div class="skill-item"><div class="skill-icon skill-icon-badge skill-icon-design" aria-hidden="true">Aa</div><p class="skill-name">Typography</p></div>
-                    <div class="skill-item"><div class="skill-icon skill-icon-badge skill-icon-design" aria-hidden="true">▦</div><p class="skill-name">Layout &amp; Composition</p></div>
-                    <div class="skill-item"><div class="skill-icon skill-icon-badge skill-icon-design" aria-hidden="true">◉</div><p class="skill-name">Color &amp; Visual Hierarchy</p></div>
-                    <div class="skill-item"><div class="skill-icon skill-icon-badge skill-icon-design" aria-hidden="true">✳</div><p class="skill-name">Brand &amp; Social Concepts</p></div>
-                    <div class="skill-item"><div class="skill-icon"><img src="images/logos/Figma.svg" alt="" loading="lazy"></div><p class="skill-name">Figma</p></div>
-                    <div class="skill-item"><div class="skill-icon"><img src="images/logos/Canva.svg" alt="" loading="lazy"></div><p class="skill-name">Canva</p></div>
-                    <div class="skill-item"><div class="skill-icon"><img src="images/logos/GIMP.svg" alt="" loading="lazy"></div><p class="skill-name">GIMP</p></div>
-                    <div class="skill-item"><div class="skill-icon skill-icon-badge skill-icon-adobe" aria-hidden="true">Ps</div><p class="skill-name">Adobe Photoshop</p></div>
-                    <div class="skill-item"><div class="skill-icon skill-icon-badge skill-icon-adobe" aria-hidden="true">Ai</div><p class="skill-name">Adobe Illustrator</p></div>
-                    <div class="skill-item"><div class="skill-icon skill-icon-badge skill-icon-adobe" aria-hidden="true">Id</div><p class="skill-name">Adobe InDesign</p></div>
-                    <div class="skill-item"><div class="skill-icon"><img src="images/adobe-com-brandmark.svg" alt="" loading="lazy"></div><p class="skill-name">Adobe Creative Cloud</p></div>
-                    <div class="skill-item"><div class="skill-icon"><img src="images/cap-cut-com-logo.webp" alt="" loading="lazy"></div><p class="skill-name">CapCut</p></div>
-                    <div class="skill-item"><div class="skill-icon skill-icon-badge skill-icon-blender" aria-hidden="true">3D</div><p class="skill-name">Blender</p></div>
+                <p class="design-skills-intro">A visual toolkit for shaping clear, distinctive work—from first concept to finished asset.</p>
+                <div class="design-toolboard">
+                    <div class="design-toolboard-story">
+                        <div>
+                            <span class="design-toolboard-kicker">DESIGN TOOLKIT</span>
+                            <h4>Ideas, composed with intention.</h4>
+                            <p>My practice brings together typography, layout, color, and visual hierarchy.</p>
+                        </div>
+                        <p class="design-toolboard-note">Concept, craft, and polish—using the tools that fit the work.</p>
+                    </div>
+                    <ul class="design-logo-grid" aria-label="Graphic design tools">
+                        <li class="design-logo-tile design-logo-tile-featured">
+                            <span class="design-logo-stage"><img src="images/logos/Figma.svg" alt="" loading="lazy"></span>
+                            <span class="design-logo-name">Figma</span>
+                        </li>
+                        <li class="design-logo-tile">
+                            <span class="design-logo-stage"><img src="images/logos/Canva.svg" alt="" loading="lazy"></span>
+                            <span class="design-logo-name">Canva</span>
+                        </li>
+                        <li class="design-logo-tile">
+                            <span class="design-logo-stage"><img src="images/logos/GIMP.svg" alt="" loading="lazy"></span>
+                            <span class="design-logo-name">GIMP</span>
+                        </li>
+                        <li class="design-logo-tile design-logo-tile-adobe">
+                            <span class="design-logo-stage"><img src="images/adobe-com-brandmark.svg" alt="" loading="lazy"></span>
+                            <span>
+                                <span class="design-logo-name">Adobe Creative Cloud</span>
+                                <span class="design-logo-detail">Photoshop · Illustrator · InDesign</span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Animation -->
+            <div class="skills-category animation-category" data-skill-panel="animation" hidden>
+                <h3 class="category-title">Animation</h3>
+                <div class="motion-showcase" id="motion">
+                    <div class="motion-showcase-layout">
+                        <div class="motion-copy">
+                            <h4>3D &amp; Motion</h4>
+                            <p>I’m familiar with Blender and use it to explore form, light, materials and movement. This abstract study uses CSS animation.</p>
+                        </div>
+                        <figure class="motion-study">
+                            <div class="motion-visual" role="img" aria-label="A shaded sphere with one slowly moving ring">
+                                <div class="motion-artifact" aria-hidden="true">
+                                    <span class="motion-orbit"><i></i></span>
+                                    <span class="motion-sphere"></span>
+                                </div>
+                            </div>
+                            <figcaption class="motion-caption">CSS motion study</figcaption>
+                        </figure>
+                    </div>
+                    <div class="animation-tool-groups">
+                        <div class="animation-tool-group">
+                            <h4>Animation &amp; 3D</h4>
+                            <ul class="motion-tools" aria-label="Animation and 3D tools">
+                                <li class="motion-tool-wordmark"><img src="images/logos/Blender.png" alt="Blender" loading="lazy"></li>
+                                <li><img src="images/logos/Higgsfield.png" alt="" loading="lazy"><span>Higgsfield</span></li>
+                                <li><img src="images/cap-cut-com-logo.webp" alt="" loading="lazy"><span>CapCut</span></li>
+                            </ul>
+                        </div>
+                        <div class="animation-tool-group">
+                            <h4>Games &amp; interactive 3D</h4>
+                            <ul class="motion-tools" aria-label="Game and interactive 3D tools">
+                                <li><img src="images/logos/Three.js.svg" alt="" loading="lazy"><span>Three.js</span></li>
+                                <li><img src="images/logos/babylonjs.png" alt="" loading="lazy"><span>Babylon.js</span></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -599,6 +630,21 @@
             <div class="skills-category" data-skill-panel="tools">
                 <h3 class="category-title">Tools</h3>
                 <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-icon"><img src="images/logos/Visual Studio Code (VS Code).svg" alt="" loading="lazy"></div>
+                        <p class="skill-name">Visual Studio Code</p>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-icon"><img src="images/logos/GitHub Codespaces.svg" alt="" loading="lazy"></div>
+                        <p class="skill-name">GitHub Codespaces</p>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-icon"><img src="images/logos/CodePen.svg" alt="" loading="lazy"></div>
+                        <p class="skill-name">CodePen</p>
+                    </div>
+
                     <div class="skill-item">
                         <div class="skill-icon">
                             <img src="images/logos/Git.svg" alt="" loading="lazy">
@@ -688,7 +734,7 @@
                     </a>
                 </div>
             </div>
-            <a href="#" class="cv-download-btn" download>Download CV</a>
+            <a href="JANE%20N.%20WAMBUGU.pdf" class="cv-download-btn" download="JANE N. WAMBUGU.pdf" aria-label="Download Jane N. Wambugu CV as PDF">Download CV</a>
         </div>
     </section>
 
