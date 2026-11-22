@@ -53,7 +53,10 @@ class PortfolioContentTests(unittest.TestCase):
         self.assertIn('id="motion"', animation_panel)
         self.assertIn("3D &amp; Motion", animation_panel)
         self.assertIn("Blender", animation_panel)
-        self.assertIn("CSS motion study", animation_panel)
+        self.assertNotIn("motion-visual", animation_panel)
+        self.assertNotIn("motion-sphere", animation_panel)
+        self.assertNotIn("motion-orbit", animation_panel)
+        self.assertIn("images/logos/Blender.png", animation_panel)
         self.assertNotRegex(HTML, r'<section\b[^>]*\bid=["\']motion["\']')
         self.assertNotIn('href="#motion"', HTML)
 
@@ -69,7 +72,7 @@ class PortfolioContentTests(unittest.TestCase):
             "A considered idea. A clear visual system. Motion with meaning.",
         ):
             self.assertNotIn(unwanted, HTML)
-        self.assertIn("This abstract study uses CSS animation.", skill_panel_markup("animation", "tools"))
+        self.assertIn("form, light, materials and movement", skill_panel_markup("animation", "tools"))
 
     def test_design_and_animation_tools_are_grouped_under_their_skill_categories(self):
         design_panel = skill_panel_markup("design", "animation")
@@ -127,6 +130,38 @@ class PortfolioContentTests(unittest.TestCase):
         self.assertIn("Illustrator", design_panel)
         self.assertIn("InDesign", design_panel)
 
+    def test_graphic_design_tools_use_an_editorial_canvas_instead_of_a_tile_grid(self):
+        design_panel = skill_panel_markup("design", "animation")
+        self.assertIn('class="design-tool-canvas"', design_panel)
+        self.assertIn('class="design-tool-mark design-tool-mark-figma"', design_panel)
+        self.assertNotIn("design-logo-grid", design_panel)
+        self.assertNotIn("design-logo-tile", design_panel)
+
+    def test_graphic_design_tab_has_a_decorative_monochrome_svg_mark(self):
+        skills = section_markup("skills")
+        design_tab = re.search(r'<button\b(?=[^>]*data-skill-target="design")[^>]*>(.*?)</button>', skills, re.DOTALL)
+        self.assertIsNotNone(design_tab)
+        self.assertIn('class="design-tab-doodle"', design_tab.group(1))
+        self.assertIn("<svg", design_tab.group(1))
+        self.assertRegex(CSS, r'\.skills-tab\[data-skill-target="design"\][\s\S]*?background:\s*#f5f1e9')
+
+    def test_approach_uses_selected_local_design_artwork(self):
+        approach = section_markup("approach")
+        self.assertIn('class="approach-artboard"', approach)
+        for image_path in (
+            "images/design-brand-concept.svg",
+            "images/design-social-concept.svg",
+            "images/design-editorial-concept.svg",
+        ):
+            self.assertIn(f'src="{image_path}"', approach)
+        self.assertEqual(approach.count('class="approach-art-piece'), 3)
+
+    def test_approach_and_skill_refinements_inherit_the_site_font(self):
+        approach_styles = CSS[CSS.index(".approach {"):CSS.index(".motion-showcase {")]
+        self.assertNotIn("font-family", approach_styles)
+        design_styles = CSS[CSS.index(".design-toolboard {"):CSS.index(".design-grid {")]
+        self.assertNotIn("font-family", design_styles)
+
     def test_tools_panel_includes_the_existing_ide_logos(self):
         tools_panel = section_markup("skills").split('data-skill-panel="tools"', 1)[1]
         for label, logo_path in (
@@ -169,8 +204,10 @@ class PortfolioContentTests(unittest.TestCase):
 
     def test_approach_and_motion_animation_respect_reduced_motion_preference(self):
         self.assertRegex(CSS, r"@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.approach")
-        reduced_motion = CSS[CSS.index("@media (prefers-reduced-motion: reduce)", CSS.index("/* Blender and 3D motion showcase */")):]
-        self.assertIn(".motion-artifact", reduced_motion)
+        reduced_motion = CSS[CSS.index("@media (prefers-reduced-motion: reduce)", CSS.index(".approach {")):]
+        for obsolete_globe_rule in (".motion-artifact", ".motion-sphere", ".motion-orbit", ".motion-visual"):
+            self.assertNotIn(obsolete_globe_rule, CSS)
+        self.assertIn(".approach.scroll-visible .approach-stage", reduced_motion)
         self.assertIn("animation: none", reduced_motion)
 
     def test_existing_navigation_and_skills_and_project_initializers_remain_enabled(self):
