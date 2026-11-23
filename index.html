@@ -83,7 +83,13 @@
         <p class="soda-dialog-copy">Enter any amount in Kenyan shillings—there are no preset amounts.</p>
         <label class="soda-amount-label" for="soda-amount">Amount (KSh)</label>
         <input id="soda-amount" name="amount" type="number" min="1" step="any" inputmode="decimal" placeholder="Enter amount in KSh" autocomplete="off">
-        <p class="soda-dialog-note">To contribute manually, send your chosen amount via M-Pesa to <strong>0725220846</strong>. This site cannot initiate payment or verify a transfer. Safaricom Daraja checkout is planned for a future update and is not active.</p>
+        <p class="soda-dialog-note">To contribute manually, send your chosen amount via M-Pesa. This site cannot initiate payment or verify a transfer. Safaricom Daraja checkout is planned for a future update and is not active.</p>
+        <div class="soda-number-row">
+          <span class="soda-number-label">M-Pesa number</span>
+          <strong id="soda-payment-number">0725220846</strong>
+          <button type="button" class="soda-copy-button" aria-label="Copy M-Pesa number">Copy</button>
+        </div>
+        <span class="soda-copy-status" id="soda-copy-status" aria-live="polite"></span>
         <button type="button" class="soda-dialog-done">Done</button>
       </form>
     </dialog>
@@ -528,15 +534,14 @@
             <!-- AI Skills -->
             <div class="skills-category" data-skill-panel="ai" hidden>
                 <h3 class="category-title">AI assistants &amp; coding tools</h3>
-                <p class="ai-skills-intro">A practical mix of assistants for coding, research, and exploring ideas.</p>
-                <ul class="ai-assistant-board" aria-label="AI assistants and coding tools">
-                    <li class="ai-assistant-mark ai-assistant-copilot"><span class="ai-tool-index">01</span><span class="ai-tool-name">GitHub Copilot</span></li>
-                    <li class="ai-assistant-mark ai-assistant-gemini"><span class="ai-tool-index">02</span><span class="ai-tool-name">Gemini</span></li>
-                    <li class="ai-assistant-mark ai-assistant-claude"><span class="ai-tool-index">03</span><span class="ai-tool-name">Claude Code</span></li>
-                    <li class="ai-assistant-mark ai-assistant-zai"><span class="ai-tool-index">04</span><span class="ai-tool-name">Z.ai</span></li>
-                    <li class="ai-assistant-mark ai-assistant-kimi"><span class="ai-tool-index">05</span><span class="ai-tool-name">Kimi</span></li>
-                    <li class="ai-assistant-mark ai-assistant-chatgpt"><span class="ai-tool-index">06</span><img src="images/chatgpt-com-logo.png" alt="" loading="lazy"><span class="ai-tool-name">ChatGPT</span></li>
-                </ul>
+                <div class="skills-grid" aria-label="AI assistants and coding tools">
+                    <div class="skill-item"><div class="skill-icon"><img src="images/logos/ai/githubcopilot.svg" alt="" loading="lazy"></div><p class="skill-name">GitHub Copilot</p></div>
+                    <div class="skill-item"><div class="skill-icon"><img src="images/logos/ai/gemini-color.svg" alt="" loading="lazy"></div><p class="skill-name">Gemini</p></div>
+                    <div class="skill-item"><div class="skill-icon"><img src="images/logos/ai/claudecode-color.svg" alt="" loading="lazy"></div><p class="skill-name">Claude Code</p></div>
+                    <div class="skill-item"><div class="skill-icon"><img src="images/logos/ai/zai.svg" alt="" loading="lazy"></div><p class="skill-name">Z.ai</p></div>
+                    <div class="skill-item"><div class="skill-icon"><img src="images/logos/ai/kimi-color.svg" alt="" loading="lazy"></div><p class="skill-name">Kimi</p></div>
+                    <div class="skill-item"><div class="skill-icon"><img src="images/logos/ai/codex.svg" alt="" loading="lazy"></div><p class="skill-name">Codex</p></div>
+                </div>
                 <h4 class="ai-secondary-heading">ML &amp; data libraries</h4>
                 <div class="skills-grid">
                     <div class="skill-item"><div class="skill-icon"><img src="images/logos/PyTorch.svg" alt="" loading="lazy"></div><p class="skill-name">PyTorch</p></div>
@@ -553,7 +558,6 @@
             <!-- Graphic Design Skills -->
             <div class="skills-category" data-skill-panel="design" hidden>
                 <h3 class="category-title">Graphic Design</h3>
-                <p class="design-skills-intro">A visual toolkit for shaping clear, distinctive work—from first concept to finished asset.</p>
                 <div class="design-toolboard">
                     <div class="design-toolboard-story">
                         <div>
@@ -561,7 +565,6 @@
                             <h4>Ideas, composed with intention.</h4>
                             <p>My practice brings together typography, layout, color, and visual hierarchy.</p>
                         </div>
-                        <p class="design-toolboard-note">Concept, craft, and polish—using the tools that fit the work.</p>
                     </div>
                     <div class="design-tool-canvas" aria-label="Graphic design tools arranged on a studio canvas">
                         <span class="design-canvas-note" aria-hidden="true">TOOLS / IN PRACTICE</span>

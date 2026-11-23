@@ -20,6 +20,9 @@ if (window.appInitialized) {
     if (!dialog || !openButton || typeof dialog.showModal !== 'function') return;
 
     const amountInput = dialog.querySelector('#soda-amount');
+    const copyButton = dialog.querySelector('.soda-copy-button');
+    const copyStatus = dialog.querySelector('#soda-copy-status');
+    const phoneNumber = dialog.querySelector('#soda-payment-number')?.textContent.trim();
     let previousFocus = null;
 
     openButton.addEventListener('click', () => {
@@ -30,6 +33,18 @@ if (window.appInitialized) {
 
     dialog.querySelectorAll('.soda-dialog-close, .soda-dialog-done').forEach((button) => {
       button.addEventListener('click', () => dialog.close());
+    });
+
+    copyButton?.addEventListener('click', async () => {
+      try {
+        if (!navigator.clipboard?.writeText || !phoneNumber) throw new Error('Clipboard unavailable');
+        await navigator.clipboard.writeText(phoneNumber);
+        copyButton.textContent = 'Copied';
+        copyStatus.textContent = 'M-Pesa number copied.';
+      } catch {
+        copyButton.textContent = 'Copy';
+        copyStatus.textContent = 'Could not copy. Please select the number and copy it manually.';
+      }
     });
 
     dialog.addEventListener('close', () => {

@@ -1683,75 +1683,13 @@ section {
     background: linear-gradient(145deg, rgba(42, 37, 33, .92), rgba(61, 53, 48, .96));
 }
 
-.design-intro,
-.design-skills-intro,
-.ai-skills-intro {
+.design-intro {
     max-width: 760px;
     margin: -24px 0 38px;
     color: #d1c7b6;
     line-height: 1.75;
     font-size: 1.05rem;
 }
-
-.design-skills-intro,
-.ai-skills-intro { margin: 0 0 24px; }
-
-.design-skills-intro { font-size: 1rem; }
-
-.ai-assistant-board {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: .8rem;
-    margin: 0 0 2rem;
-    padding: 0;
-    list-style: none;
-}
-
-.ai-assistant-mark {
-    position: relative;
-    display: flex;
-    min-width: 0;
-    min-height: 118px;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: .7rem;
-    padding: 1rem;
-    overflow: hidden;
-    border: 1px solid rgba(212, 165, 116, .32);
-    border-radius: 5px 15px 5px 15px;
-    background: linear-gradient(145deg, rgba(61, 53, 48, .88), rgba(42, 37, 33, .82));
-    color: #fff8ed;
-}
-
-.ai-assistant-mark:nth-child(3n + 2) { border-radius: 15px 5px 15px 5px; }
-.ai-assistant-mark:nth-child(3n) { transform: translateY(8px); }
-
-.ai-tool-index {
-    color: #d4a574;
-    font-size: .76rem;
-    font-weight: 700;
-    letter-spacing: .08em;
-    font-variant-numeric: tabular-nums;
-}
-
-.ai-tool-name {
-    display: block;
-    color: #fff8ed;
-    font-size: 1.1rem;
-    font-weight: 650;
-    line-height: 1.25;
-    text-wrap: pretty;
-}
-
-.ai-assistant-chatgpt {
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: flex-start;
-}
-
-.ai-assistant-chatgpt .ai-tool-index { position: absolute; top: 1rem; left: 1rem; }
-.ai-assistant-chatgpt img { width: 30px; height: 30px; object-fit: contain; }
 
 .ai-secondary-heading {
     margin: 0 0 1rem;
@@ -1802,13 +1740,6 @@ section {
     font-size: 1rem;
     line-height: 1.65;
     text-wrap: pretty;
-}
-
-.design-toolboard-story .design-toolboard-note {
-    padding-top: .85rem;
-    border-top: 1px solid rgba(255, 255, 255, .1);
-    color: #c3b6a8;
-    font-size: .92rem;
 }
 
 .design-tool-canvas {
@@ -2099,8 +2030,7 @@ section {
 
     .skills-category { min-width: 0; }
 
-    .design-intro,
-    .design-skills-intro {
+    .design-intro {
         font-size: 1rem;
         margin-bottom: 1.5rem;
     }
@@ -2218,10 +2148,6 @@ body {
 }
 
 @media (max-width: 520px) {
-    .ai-assistant-board { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }
-    .ai-assistant-mark { min-height: 100px; padding: .8rem; }
-    .ai-assistant-mark:nth-child(3n) { transform: none; }
-    .ai-tool-name { font-size: 1rem; }
     .design-tool-canvas { min-height: 0; padding: 1rem .8rem; }
     .design-tool-mark { gap: .45rem; padding: .55rem; }
     .design-tool-icon { flex-basis: 32px; width: 32px; height: 32px; }
@@ -2291,6 +2217,12 @@ body {
 .soda-dialog input { width: 100%; min-height: 48px; padding: .7rem .85rem; border: 1px solid rgba(212, 165, 116, .55); border-radius: 9px; background: rgba(15, 13, 11, .45); color: #fff; font: inherit; }
 .soda-dialog input::placeholder { color: #bcae9d; }
 .soda-dialog-note { font-size: .88rem; }
+.soda-number-row { display: flex; align-items: center; flex-wrap: wrap; gap: .45rem .7rem; }
+.soda-number-label { color: #d1c7b6; font-size: .9rem; }
+.soda-number-row strong { color: #fff4df; font-size: 1rem; letter-spacing: .025em; }
+.soda-copy-button { min-width: 72px; min-height: 40px; margin-left: auto; padding: .45rem .8rem; border: 1px solid rgba(212, 165, 116, .72); border-radius: 999px; background: rgba(212, 165, 116, .16); color: #fff4df; font: inherit; font-weight: 650; cursor: pointer; }
+.soda-copy-button:hover { background: rgba(212, 165, 116, .28); }
+.soda-copy-status { min-height: 1.2em; color: #d4a574; font-size: .86rem; line-height: 1.4; }
 .soda-dialog-done { justify-self: end; min-width: 88px; min-height: 44px; margin-top: .35rem; padding: .6rem 1rem; border: 1px solid rgba(212, 165, 116, .72); border-radius: 999px; background: rgba(212, 165, 116, .16); color: #fff4df; font: inherit; font-weight: 650; cursor: pointer; }
 .soda-dialog-done:hover { background: rgba(212, 165, 116, .28); }
 

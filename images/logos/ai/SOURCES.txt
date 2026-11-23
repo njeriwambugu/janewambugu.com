@@ -1,0 +1,7 @@
+AI brand icon SVGs in this folder were copied from @lobehub/icons-static-svg 1.106.0.
+Source repository: https://github.com/lobehub/lobe-icons
+Package license: MIT; see LOBEHUB-LICENSE.txt.
+
+Files: githubcopilot.svg, gemini-color.svg, claudecode-color.svg, zai.svg,
+kimi-color.svg, and codex.svg (the monochrome Codex mark).
+Brand names and marks remain the property of their respective owners.

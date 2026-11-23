@@ -52,6 +52,9 @@ class PortfolioContentTests(unittest.TestCase):
         self.assertIn('for="soda-amount">Amount (KSh)</label>', dialog.group(0))
         self.assertIn("M-Pesa", dialog.group(0))
         self.assertIn("0725220846", dialog.group(0))
+        self.assertIn('class="soda-copy-button"', dialog.group(0))
+        self.assertIn('aria-live="polite"', dialog.group(0))
+        self.assertIn("navigator.clipboard.writeText", SCRIPT)
         self.assertIn("Safaricom Daraja", dialog.group(0))
         self.assertIn("planned for a future update", dialog.group(0))
         self.assertRegex(dialog.group(0), r"(?i)(will not initiate|cannot initiate) payment")
@@ -119,7 +122,12 @@ class PortfolioContentTests(unittest.TestCase):
         self.assertIn("ai", targets)
         ai_panel = skill_panel_markup("ai", "design")
         for label, logo_path in (
-            ("ChatGPT", "images/chatgpt-com-logo.png"),
+            ("Codex", "images/logos/ai/codex.svg"),
+            ("GitHub Copilot", "images/logos/ai/githubcopilot.svg"),
+            ("Gemini", "images/logos/ai/gemini-color.svg"),
+            ("Claude Code", "images/logos/ai/claudecode-color.svg"),
+            ("Z.ai", "images/logos/ai/zai.svg"),
+            ("Kimi", "images/logos/ai/kimi-color.svg"),
             ("PyTorch", "images/logos/PyTorch.svg"),
             ("TensorFlow", "images/logos/TensorFlow.svg"),
             ("scikit-learn", "images/logos/scikit-learn.svg"),
@@ -132,12 +140,22 @@ class PortfolioContentTests(unittest.TestCase):
     def test_ai_category_prioritizes_named_assistants_and_groups_ml_libraries_separately(self):
         ai_panel = skill_panel_markup("ai", "design")
         self.assertIn("AI assistants &amp; coding tools", ai_panel)
-        for assistant in ("GitHub Copilot", "Gemini", "Claude Code", "Z.ai", "Kimi", "ChatGPT"):
+        for assistant in ("GitHub Copilot", "Gemini", "Claude Code", "Z.ai", "Kimi", "Codex"):
             self.assertIn(assistant, ai_panel)
+        self.assertIn('class="skills-grid" aria-label="AI assistants and coding tools"', ai_panel)
+        self.assertGreaterEqual(ai_panel.count('class="skill-item"'), 6)
+        self.assertNotIn("ai-assistant-board", ai_panel)
+        self.assertNotIn("ai-tool-index", ai_panel)
+        self.assertNotIn("ChatGPT", ai_panel)
         self.assertIn("ML &amp; data libraries", ai_panel)
         for library in ("PyTorch", "TensorFlow", "scikit-learn", "NumPy"):
             self.assertIn(library, ai_panel)
         self.assertIn("Higgsfield", ai_panel)
+
+    def test_graphic_design_panel_omits_the_two_removed_intro_lines(self):
+        design_panel = skill_panel_markup("design", "animation")
+        self.assertNotIn("A visual toolkit for shaping clear, distinctive work", design_panel)
+        self.assertNotIn("Concept, craft, and polish", design_panel)
 
     def test_graphic_design_tab_uses_shared_tab_styling_without_a_doodle(self):
         skills = section_markup("skills")
