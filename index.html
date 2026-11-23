@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/logo.png" type="image/png" sizes="16x16 32x32 48x48 64x64">
-    <link rel="stylesheet" href="styles.css?v=ai-assistants-doodle-motion-20261123">
+    <link rel="stylesheet" href="styles.css?v=portfolio-refinements-20261123">
      <title>Jane Wambugu – Full Stack Developer & AI Portfolio</title>
      <meta name="description" content="Portfolio of Jane Wambugu, showcasing projects in AI, web development, and full-stack applications. Explore skills, projects, and contact info.">
 
@@ -38,11 +38,24 @@
   <div class="nav-container">
     <ul class="nav-menu">
       <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#approach" class="nav-link">Approach</a></li>
       <li><a href="#projects" class="nav-link">Projects</a></li>
       <li><a href="#skills" class="nav-link">Skills</a></li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
+
+    <button type="button" class="soda-can soda-can-button" id="soda-support-open" aria-label="Buy me soda" aria-haspopup="dialog" aria-controls="soda-support-dialog">
+      <svg class="soda-can-art" viewBox="0 0 36 42" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="soda-can-body" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f4d8a9"/><stop offset=".48" stop-color="#d4a574"/><stop offset="1" stop-color="#9d6541"/></linearGradient>
+        </defs>
+        <path d="M10 5h16l2 4 2 26-3 3H9l-3-3L8 9l2-4Z" fill="url(#soda-can-body)" stroke="#f5e4c7" stroke-width="1.4"/>
+        <path d="M10 5h16l1.2 3H8.8L10 5Z" fill="#e8d2b2" stroke="#fff2dc" stroke-width="1"/>
+        <path d="M15 5.5c.5 2.3 5.5 2.3 6 0" fill="none" stroke="#816040" stroke-width="1.4"/>
+        <path d="M8 12h20M7.1 32h21.8" stroke="#fff0d6" stroke-opacity=".62" stroke-width="1"/>
+        <text x="18" y="24" text-anchor="middle" fill="#2a2521" font-family="Segoe UI, sans-serif" font-size="6.3" font-weight="800" letter-spacing=".4">SODA</text>
+      </svg>
+      <span>Buy me soda</span>
+    </button>
 
     <div class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Open menu" role="button" tabindex="0">
       <div class="hamburger"></div>
@@ -55,7 +68,6 @@
   <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
     <div class="mobile-nav-menu">
       <a href="#about" class="mobile-nav-link">About</a>
-      <a href="#approach" class="mobile-nav-link">Approach</a>
       <a href="#projects" class="mobile-nav-link">Projects</a>
       <a href="#skills" class="mobile-nav-link">Skills</a>
       <a href="#contact" class="mobile-nav-link">Contact</a>
@@ -63,6 +75,18 @@
   </div>
 </nav>
 
+    <dialog class="soda-dialog" id="soda-support-dialog" aria-labelledby="soda-dialog-title">
+      <form method="dialog" class="soda-dialog-card">
+        <button type="button" class="soda-dialog-close" aria-label="Close amount selector">&times;</button>
+        <span class="soda-dialog-kicker">A little thank-you</span>
+        <h2 id="soda-dialog-title">Buy me soda</h2>
+        <p class="soda-dialog-copy">Choose an amount you have in mind. This is only a preview—payment setup is not connected, and no payment will be initiated.</p>
+        <label class="soda-amount-label" for="soda-amount">Amount</label>
+        <input id="soda-amount" name="amount" type="number" min="1" step="any" inputmode="decimal" placeholder="Enter an amount" autocomplete="off">
+        <p class="soda-dialog-note">Currency, suggested amounts, and manual payment instructions will be added after confirmation.</p>
+        <button type="button" class="soda-dialog-done">Done</button>
+      </form>
+    </dialog>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -95,52 +119,6 @@
             <!--<div class="about-image">
                 <img src="/images/workers.webp" alt="Developer working">
             </div>-->
-        </div>
-    </section>
-
-    <!-- My Approach Section -->
-    <section id="approach" class="approach">
-        <div class="approach-heading">
-            <h2 class="section-title">My Approach</h2>
-            <p class="approach-intro">I start by understanding the goal and who it’s for.</p>
-        </div>
-        <div class="approach-composition">
-            <div class="approach-artboard" role="group" aria-label="Selected graphic design studies">
-                <figure class="approach-art-piece approach-art-piece-main">
-                    <img src="images/design-social-concept.svg" alt="Promotional graphic design study with bold color and shape" loading="lazy" decoding="async">
-                    <figcaption><span>01</span> Visual direction</figcaption>
-                </figure>
-                <figure class="approach-art-piece approach-art-piece-brand">
-                    <img src="images/design-brand-concept.svg" alt="Business card design study" loading="lazy" decoding="async">
-                    <figcaption>Identity</figcaption>
-                </figure>
-                <figure class="approach-art-piece approach-art-piece-editorial">
-                    <img src="images/design-editorial-concept.svg" alt="Editorial design study" loading="lazy" decoding="async">
-                    <figcaption>Editorial</figcaption>
-                </figure>
-            </div>
-            <ol class="approach-process" aria-label="My creative process">
-                <li class="approach-stage">
-                    <span class="approach-step" aria-hidden="true">01</span>
-                    <div><h3>Discover</h3><p>I learn what the project needs and who it’s for.</p></div>
-                </li>
-                <li class="approach-stage">
-                    <span class="approach-step" aria-hidden="true">02</span>
-                    <div><h3>Define</h3><p>I agree on the goal and what a good result looks like.</p></div>
-                </li>
-                <li class="approach-stage">
-                    <span class="approach-step" aria-hidden="true">03</span>
-                    <div><h3>Design</h3><p>I shape the layout and visual direction.</p></div>
-                </li>
-                <li class="approach-stage">
-                    <span class="approach-step" aria-hidden="true">04</span>
-                    <div><h3>Animate</h3><p>I add movement when it helps the idea come across.</p></div>
-                </li>
-                <li class="approach-stage">
-                    <span class="approach-step" aria-hidden="true">05</span>
-                    <div><h3>Refine</h3><p>I test the details and polish the finished work.</p></div>
-                </li>
-            </ol>
         </div>
     </section>
 
@@ -453,7 +431,7 @@
                 <button type="button" class="skills-tab" data-skill-target="ai"
                     aria-selected="false">AI</button>
                 <button type="button" class="skills-tab" data-skill-target="design"
-                    aria-selected="false"><svg class="design-tab-doodle" viewBox="0 0 42 32" aria-hidden="true" focusable="false"><path d="M5 25.5 9.2 15l5.3 5.3-9.5 5.2Z"/><path d="m9.2 15 4.4-4.4 5.3 5.3-4.4 4.4M18.9 15.9c3.1-5.2 6.4-7.1 11.4-7.9M25 5.4l5.8 2.6-2.1 5.9M23.7 25.6h11.1M29.2 20v11"/><circle cx="34.5" cy="8" r="2.2"/></svg><span>Graphic Design</span></button>
+                    aria-selected="false">Graphic Design</button>
                 <button type="button" class="skills-tab" data-skill-target="animation"
                     aria-selected="false">Animation</button>
                 <button type="button" class="skills-tab" data-skill-target="tools"
@@ -611,31 +589,28 @@
             </div>
 
             <!-- Animation -->
-            <div class="skills-category animation-category" data-skill-panel="animation" hidden>
+            <div class="skills-category" data-skill-panel="animation" hidden>
                 <h3 class="category-title">Animation</h3>
-                <div class="motion-showcase" id="motion">
-                    <div class="motion-showcase-layout">
-                        <div class="motion-copy">
-                            <h4>3D &amp; Motion</h4>
-                            <p>I’m familiar with Blender and use it to explore form, light, materials and movement.</p>
-                        </div>
-                        <div class="animation-tool-groups">
-                            <div class="animation-tool-group">
-                                <h4>Animation &amp; 3D</h4>
-                                <ul class="motion-tools" aria-label="Animation and 3D tools">
-                                    <li class="motion-tool-wordmark"><img src="images/logos/Blender.png" alt="Blender" loading="lazy"></li>
-                                    <li><img src="images/logos/Higgsfield.png" alt="" loading="lazy"><span>Higgsfield</span></li>
-                                    <li><img src="images/cap-cut-com-logo.webp" alt="" loading="lazy"><span>CapCut</span></li>
-                                </ul>
-                            </div>
-                            <div class="animation-tool-group">
-                                <h4>Games &amp; interactive 3D</h4>
-                                <ul class="motion-tools" aria-label="Game and interactive 3D tools">
-                                    <li><img src="images/logos/Three.js.svg" alt="" loading="lazy"><span>Three.js</span></li>
-                                    <li><img src="images/logos/babylonjs.png" alt="" loading="lazy"><span>Babylon.js</span></li>
-                                </ul>
-                            </div>
-                        </div>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-icon"><img src="images/logos/Blender.png" alt="" loading="lazy"></div>
+                        <p class="skill-name">Blender</p>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><img src="images/logos/Higgsfield.png" alt="" loading="lazy"></div>
+                        <p class="skill-name">Higgsfield</p>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><img src="images/cap-cut-com-logo.webp" alt="" loading="lazy"></div>
+                        <p class="skill-name">CapCut</p>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><img src="images/logos/Three.js.svg" alt="" loading="lazy"></div>
+                        <p class="skill-name">Three.js</p>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><img src="images/logos/babylonjs.png" alt="" loading="lazy"></div>
+                        <p class="skill-name">Babylon.js</p>
                     </div>
                 </div>
             </div>
@@ -734,17 +709,24 @@
                         target="_blank" rel="noopener noreferrer" aria-label="Copilot">
                         <span class="radial-intro-icon"><span class="radial-intro-glyph">AI</span></span>
                     </a>
-                    <a href="https://facebook.com/" class="radial-intro-item" style="--item-index: 6;"
-                        target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                        <span class="radial-intro-icon"><span class="radial-intro-glyph">f</span></span>
-                    </a>
+                    <span class="radial-intro-item" style="--item-index: 6;" role="img" aria-label="Discord link coming soon">
+                        <span class="radial-intro-icon">
+                            <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false" fill="currentColor">
+                                <path d="M19.73 5.33A18.1 18.1 0 0 0 15.25 4a12.6 12.6 0 0 0-.57 1.17 16.7 16.7 0 0 0-5.36 0A12.6 12.6 0 0 0 8.75 4a18.1 18.1 0 0 0-4.48 1.34C1.43 9.5.66 13.56 1.04 17.56a18.3 18.3 0 0 0 5.49 2.76c.44-.6.83-1.24 1.17-1.92-.64-.24-1.25-.54-1.83-.9l.45-.35a13 13 0 0 0 11.36 0l.45.35c-.58.36-1.19.66-1.83.9.34.68.73 1.32 1.17 1.92a18.3 18.3 0 0 0 5.49-2.76c.45-4.64-.77-8.66-3.23-12.23ZM8.7 14.95c-1.07 0-1.95-.98-1.95-2.18s.86-2.18 1.95-2.18 1.97.99 1.95 2.18c0 1.2-.86 2.18-1.95 2.18Zm6.6 0c-1.07 0-1.95-.98-1.95-2.18s.86-2.18 1.95-2.18 1.97.99 1.95 2.18c0 1.2-.86 2.18-1.95 2.18Z"/>
+                            </svg>
+                        </span>
+                    </span>
                     <a href="https://miraditechtribe.com" class="radial-intro-item" style="--item-index: 7;"
                         target="_blank" rel="noopener noreferrer" aria-label="Tech Account">
                         <span class="radial-intro-icon"><span class="radial-intro-glyph">&lt;/&gt;</span></span>
                     </a>
-                    <a href="https://stackoverflow.com/" class="radial-intro-item" style="--item-index: 8;"
-                        target="_blank" rel="noopener noreferrer" aria-label="Stack Overflow">
-                        <span class="radial-intro-icon"><span class="radial-intro-glyph">SO</span></span>
+                    <a href="sms:" class="radial-intro-item" style="--item-index: 8;" aria-label="SMS">
+                        <span class="radial-intro-icon">
+                            <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.4-.75L4 20l1.5-4.35A7.5 7.5 0 1 1 20 11.5Z"/>
+                                <path d="M8.5 11.5h7M8.5 14.5h4"/>
+                            </svg>
+                        </span>
                     </a>
                 </div>
             </div>
@@ -756,7 +738,7 @@
     <footer>
         <p class="footer-text">&copy; 2024 JANE WAMBUGU. All rights reserved.</p>
     </footer>-->
-    <script src="script.js?v=3d-motion-showcase-20261121"></script>
+    <script src="script.js?v=portfolio-refinements-20261123"></script>
 
 </body>
 

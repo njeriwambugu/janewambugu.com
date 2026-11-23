@@ -12,6 +12,32 @@ if (window.appInitialized) {
   let observers = [];
 
   // ----------------------------
+  // SODA AMOUNT PREVIEW
+  // ----------------------------
+  function initSodaDialog() {
+    const dialog = document.getElementById('soda-support-dialog');
+    const openButton = document.getElementById('soda-support-open');
+    if (!dialog || !openButton || typeof dialog.showModal !== 'function') return;
+
+    const amountInput = dialog.querySelector('#soda-amount');
+    let previousFocus = null;
+
+    openButton.addEventListener('click', () => {
+      previousFocus = document.activeElement;
+      dialog.showModal();
+      amountInput?.focus();
+    });
+
+    dialog.querySelectorAll('.soda-dialog-close, .soda-dialog-done').forEach((button) => {
+      button.addEventListener('click', () => dialog.close());
+    });
+
+    dialog.addEventListener('close', () => {
+      if (previousFocus instanceof HTMLElement && previousFocus.isConnected) previousFocus.focus();
+    });
+  }
+
+  // ----------------------------
   // MOBILE MENU
   // ----------------------------
   function initMobileMenu() {
@@ -403,6 +429,7 @@ if (window.appInitialized) {
   // INITIALIZE APP
   // ----------------------------
   function initializeApp() {
+    initSodaDialog();
     initMobileMenu();
     initSmoothScrolling();
     initNavbarScroll();

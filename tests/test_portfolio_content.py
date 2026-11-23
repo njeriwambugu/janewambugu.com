@@ -27,41 +27,64 @@ def skill_panel_markup(panel_id, following_panel_id):
 
 
 class PortfolioContentTests(unittest.TestCase):
+    def test_contact_wheel_shows_discord_without_a_placeholder_profile_url(self):
+        contact = section_markup("contact")
+        self.assertIn('aria-label="Discord link coming soon"', contact)
+        self.assertIn("<svg", contact)
+        self.assertNotIn('aria-label="Facebook"', contact)
+        self.assertNotRegex(contact, r'<a\b[^>]*href="[^"]*discord[^"]*"')
+
+    def test_contact_wheel_replaces_stack_overflow_with_an_sms_link(self):
+        contact = section_markup("contact")
+        self.assertIn('href="sms:"', contact)
+        self.assertIn('aria-label="SMS"', contact)
+        self.assertNotIn('aria-label="Stack Overflow"', contact)
+        self.assertNotIn(">SO</span>", contact)
+
+    def test_soda_amount_dialog_does_not_claim_payment_is_enabled(self):
+        nav = re.search(r'<nav\b[\s\S]*?</nav>', HTML).group(0)
+        self.assertRegex(nav, r'<button\b(?=[^>]*aria-label="Buy me soda")(?=[^>]*class="[^"]*soda-can[^"]*")[^>]*>')
+        self.assertIn('aria-haspopup="dialog"', nav)
+        dialog = re.search(r'<dialog\b[\s\S]*?</dialog>', HTML)
+        self.assertIsNotNone(dialog)
+        self.assertIn('aria-labelledby="soda-dialog-title"', dialog.group(0))
+        self.assertIn('id="soda-amount"', dialog.group(0))
+        self.assertIn("payment setup is not connected", dialog.group(0))
+        self.assertIn("no payment will be initiated", dialog.group(0))
+        self.assertNotRegex(dialog.group(0), r"(?i)(till number|pay now|daraja api endpoint)")
+        self.assertIn("dialog.showModal()", SCRIPT)
+        self.assertIn("dialog.close()", SCRIPT)
+
     def test_skill_tab_order_matches_panel_order(self):
         skills = section_markup("skills")
         tab_targets = re.findall(r'data-skill-target="([^"]+)"', skills)
         panel_targets = re.findall(r'data-skill-panel="([^"]+)"', skills)
         self.assertEqual(tab_targets, panel_targets)
 
-    def test_approach_section_follows_about_and_precedes_projects(self):
-        about = HTML.index('id="about"')
-        approach = HTML.index('id="approach"')
-        projects = HTML.index('id="projects"')
-        self.assertLess(about, approach)
-        self.assertLess(approach, projects)
-        approach_markup = section_markup("approach")
-        for stage in ("Discover", "Define", "Design", "Animate", "Refine"):
-            self.assertIn(stage, approach_markup)
+    def test_approach_section_and_navigation_links_are_removed(self):
+        self.assertNotRegex(HTML, r'<section\b[^>]*\bid=["\']approach["\']')
+        self.assertNotIn('href="#approach"', HTML)
+        self.assertNotIn("My Approach", HTML)
+        self.assertNotIn("approach", CSS.lower())
 
-    def test_animation_category_sits_by_graphic_design_and_contains_the_motion_study(self):
+    def test_animation_category_uses_the_shared_skills_grid_and_contains_logos_only(self):
         skills = section_markup("skills")
         tab_targets = re.findall(r'data-skill-target="([^"]+)"', skills)
         design_index = tab_targets.index("design")
         self.assertEqual(tab_targets[design_index + 1], "animation")
         self.assertIn('data-skill-panel="animation"', skills)
         animation_panel = skill_panel_markup("animation", "tools")
-        self.assertIn('id="motion"', animation_panel)
-        self.assertIn("3D &amp; Motion", animation_panel)
+        self.assertIn('class="skills-grid"', animation_panel)
+        self.assertIn('class="skill-item"', animation_panel)
+        self.assertNotIn("animation-tool-groups", animation_panel)
+        self.assertNotIn("motion-copy", animation_panel)
+        self.assertNotIn("3D &amp; Motion", animation_panel)
         self.assertIn("Blender", animation_panel)
-        self.assertNotIn("motion-visual", animation_panel)
-        self.assertNotIn("motion-sphere", animation_panel)
-        self.assertNotIn("motion-orbit", animation_panel)
-        self.assertIn("images/logos/Blender.png", animation_panel)
-        self.assertNotRegex(HTML, r'<section\b[^>]*\bid=["\']motion["\']')
-        self.assertNotIn('href="#motion"', HTML)
+        self.assertNotIn('id="motion"', HTML)
 
-    def test_approach_and_motion_copy_avoids_template_labels_and_unneeded_decoration(self):
-        self.assertIn("I start by understanding the goal and who it’s for.", section_markup("approach"))
+    def test_removed_approach_and_animation_copy_is_absent(self):
+        self.assertNotIn("I start by understanding the goal", HTML)
+        self.assertNotIn("form, light, materials and movement", HTML)
         for unwanted in (
             "THOUGHTFUL BY DESIGN",
             "DIMENSION, LIGHT &amp; MOVEMENT",
@@ -72,7 +95,6 @@ class PortfolioContentTests(unittest.TestCase):
             "A considered idea. A clear visual system. Motion with meaning.",
         ):
             self.assertNotIn(unwanted, HTML)
-        self.assertIn("form, light, materials and movement", skill_panel_markup("animation", "tools"))
 
     def test_design_and_animation_tools_are_grouped_under_their_skill_categories(self):
         design_panel = skill_panel_markup("design", "animation")
@@ -113,17 +135,13 @@ class PortfolioContentTests(unittest.TestCase):
             self.assertIn(library, ai_panel)
         self.assertIn("Higgsfield", ai_panel)
 
-    def test_graphic_design_tab_draws_its_doodle_and_disables_animation_for_reduced_motion(self):
-        self.assertIn("@keyframes designDoodleDraw", CSS)
-        self.assertRegex(
-            CSS,
-            r'\.skills-tab\[data-skill-target="design"\].*?\.design-tab-doodle path\s*\{[^}]*animation:\s*designDoodleDraw',
-        )
-        reduced_motion = CSS[CSS.index("@media (prefers-reduced-motion: reduce)", CSS.index(".approach {")):]
-        self.assertRegex(
-            reduced_motion,
-            r'\.skills-tab\[data-skill-target="design"\]:is\(:hover, :focus-visible, \.active\) \.design-tab-doodle path,[\s\S]*?\.design-tab-doodle circle \{\s*animation:\s*none',
-        )
+    def test_graphic_design_tab_uses_shared_tab_styling_without_a_doodle(self):
+        skills = section_markup("skills")
+        design_tab = re.search(r'<button\b(?=[^>]*data-skill-target="design")[^>]*>(.*?)</button>', skills, re.DOTALL)
+        self.assertIsNotNone(design_tab)
+        self.assertEqual(re.sub(r"<[^>]+>", "", design_tab.group(1)).strip(), "Graphic Design")
+        self.assertNotIn("design-tab-doodle", design_tab.group(1))
+        self.assertNotIn("designDoodleDraw", CSS)
 
     def test_animation_category_uses_real_animation_and_game_tool_logos(self):
         animation_panel = skill_panel_markup("animation", "tools")
@@ -159,28 +177,19 @@ class PortfolioContentTests(unittest.TestCase):
         self.assertNotIn("design-logo-grid", design_panel)
         self.assertNotIn("design-logo-tile", design_panel)
 
-    def test_graphic_design_tab_has_a_decorative_monochrome_svg_mark(self):
+    def test_graphic_design_tab_has_the_standard_text_label(self):
         skills = section_markup("skills")
         design_tab = re.search(r'<button\b(?=[^>]*data-skill-target="design")[^>]*>(.*?)</button>', skills, re.DOTALL)
         self.assertIsNotNone(design_tab)
-        self.assertIn('class="design-tab-doodle"', design_tab.group(1))
-        self.assertIn("<svg", design_tab.group(1))
-        self.assertRegex(CSS, r'\.skills-tab\[data-skill-target="design"\][\s\S]*?background:\s*#f5f1e9')
+        self.assertEqual(re.sub(r"<[^>]+>", "", design_tab.group(1)).strip(), "Graphic Design")
+        self.assertNotIn("design-tab-doodle", design_tab.group(1))
 
-    def test_approach_uses_selected_local_design_artwork(self):
-        approach = section_markup("approach")
-        self.assertIn('class="approach-artboard"', approach)
-        for image_path in (
-            "images/design-brand-concept.svg",
-            "images/design-social-concept.svg",
-            "images/design-editorial-concept.svg",
-        ):
-            self.assertIn(f'src="{image_path}"', approach)
-        self.assertEqual(approach.count('class="approach-art-piece'), 3)
+    def test_approach_design_study_is_no_longer_rendered(self):
+        self.assertNotIn('id="approach"', HTML)
+        self.assertNotIn("approach-art-piece", HTML)
+        self.assertNotIn('aria-label="Selected graphic design studies"', HTML)
 
-    def test_approach_and_skill_refinements_inherit_the_site_font(self):
-        approach_styles = CSS[CSS.index(".approach {"):CSS.index(".motion-showcase {")]
-        self.assertNotIn("font-family", approach_styles)
+    def test_graphic_design_skill_refinement_inherits_the_site_font(self):
         design_styles = CSS[CSS.index(".design-toolboard {"):CSS.index(".design-grid {")]
         self.assertNotIn("font-family", design_styles)
 
@@ -224,20 +233,19 @@ class PortfolioContentTests(unittest.TestCase):
         contact = section_markup("contact")
         self.assertIn('href="mailto:jane@miraditechtribe.com"', contact)
 
-    def test_approach_and_motion_animation_respect_reduced_motion_preference(self):
-        self.assertRegex(CSS, r"@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.approach")
-        reduced_motion = CSS[CSS.index("@media (prefers-reduced-motion: reduce)", CSS.index(".approach {")):]
-        for obsolete_globe_rule in (".motion-artifact", ".motion-sphere", ".motion-orbit", ".motion-visual"):
-            self.assertNotIn(obsolete_globe_rule, CSS)
-        self.assertIn(".approach.scroll-visible .approach-stage", reduced_motion)
-        self.assertIn("animation: none", reduced_motion)
+    def test_removed_approach_and_animation_styles_are_absent(self):
+        self.assertIn("@media (prefers-reduced-motion: reduce)", CSS)
+        for obsolete_selector in (".approach", ".motion-showcase", ".motion-tools", ".animation-tool-groups"):
+            self.assertNotIn(obsolete_selector, CSS)
 
     def test_existing_navigation_and_skills_and_project_initializers_remain_enabled(self):
         initializer = SCRIPT.split("function initializeApp() {", 1)[1].split("\n  }", 1)[0]
         self.assertIn("initSmoothScrolling();", initializer)
         self.assertIn("initSkillsTabs();", initializer)
+        self.assertIn("initSodaDialog();", initializer)
         self.assertEqual(initializer.count("initProjectFilters();"), 1)
         self.assertNotIn("initContactLinks();", initializer)
+
 
 
 if __name__ == "__main__":
