@@ -103,6 +103,28 @@ class PortfolioContentTests(unittest.TestCase):
             self.assertIn(label, ai_panel)
             self.assertIn(f'src="{logo_path}"', ai_panel)
 
+    def test_ai_category_prioritizes_named_assistants_and_groups_ml_libraries_separately(self):
+        ai_panel = skill_panel_markup("ai", "design")
+        self.assertIn("AI assistants &amp; coding tools", ai_panel)
+        for assistant in ("GitHub Copilot", "Gemini", "Claude Code", "Z.ai", "Kimi", "ChatGPT"):
+            self.assertIn(assistant, ai_panel)
+        self.assertIn("ML &amp; data libraries", ai_panel)
+        for library in ("PyTorch", "TensorFlow", "scikit-learn", "NumPy"):
+            self.assertIn(library, ai_panel)
+        self.assertIn("Higgsfield", ai_panel)
+
+    def test_graphic_design_tab_draws_its_doodle_and_disables_animation_for_reduced_motion(self):
+        self.assertIn("@keyframes designDoodleDraw", CSS)
+        self.assertRegex(
+            CSS,
+            r'\.skills-tab\[data-skill-target="design"\].*?\.design-tab-doodle path\s*\{[^}]*animation:\s*designDoodleDraw',
+        )
+        reduced_motion = CSS[CSS.index("@media (prefers-reduced-motion: reduce)", CSS.index(".approach {")):]
+        self.assertRegex(
+            reduced_motion,
+            r'\.skills-tab\[data-skill-target="design"\]:is\(:hover, :focus-visible, \.active\) \.design-tab-doodle path,[\s\S]*?\.design-tab-doodle circle \{\s*animation:\s*none',
+        )
+
     def test_animation_category_uses_real_animation_and_game_tool_logos(self):
         animation_panel = skill_panel_markup("animation", "tools")
         for label, logo_path in (
