@@ -116,6 +116,42 @@ class PortfolioContentTests(unittest.TestCase):
         for tool in ("Git", "Docker", "AWS"):
             self.assertIn(tool, tools_panel)
 
+    def test_requested_tools_are_grouped_under_clear_skill_categories(self):
+        skills = section_markup("skills")
+        frontend_panel = skill_panel_markup("frontend", "backend")
+        backend_panel = skill_panel_markup("backend", "ai")
+        design_panel = skill_panel_markup("design", "animation")
+        tools_panel = skills.split('data-skill-panel="tools"', 1)[1]
+
+        self.assertIn('src="images/logos/wordpress-icon-alt.svg"', frontend_panel)
+        self.assertIn("WordPress", frontend_panel)
+
+        self.assertIn("Databases", backend_panel)
+        self.assertIn('src="images/logos/supabase.svg"', backend_panel)
+        self.assertIn("Supabase", backend_panel)
+        self.assertIn("MongoDB", backend_panel)
+        self.assertIn("MySQL", backend_panel)
+
+        self.assertIn('src="images/logos/adobe-xd.svg"', design_panel)
+        self.assertIn("Adobe XD", design_panel)
+        self.assertIn('src="images/logos/adobe-indesign.svg"', design_panel)
+        self.assertIn("InDesign", design_panel)
+
+        vscode_index = tools_panel.index('<p class="skill-name">Visual Studio Code</p>')
+        intellij_index = tools_panel.index('<p class="skill-name">IntelliJ IDEA</p>')
+        self.assertEqual(
+            tools_panel[vscode_index:intellij_index].count('class="skill-name"'), 1,
+            "IntelliJ IDEA should be the next skill card after Visual Studio Code",
+        )
+        self.assertIn('src="images/logos/intellij-idea.svg"', tools_panel)
+        self.assertIn('src="images/logos/antigravity.svg"', tools_panel)
+        self.assertIn("Antigravity", tools_panel)
+
+        planning_heading = tools_panel.index("Planning &amp; knowledge")
+        notion_index = tools_panel.index("Notion")
+        self.assertLess(planning_heading, notion_index)
+        self.assertIn('src="images/logos/notion-icon.svg"', tools_panel)
+
     def test_ai_category_lists_all_available_ai_logos(self):
         skills = section_markup("skills")
         targets = re.findall(r'data-skill-target="([^"]+)"', skills)

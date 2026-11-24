@@ -1,0 +1,13 @@
+New portfolio skill-card logo assets
+
+supabase.svg
+Source: https://supabase.com/brand-assets/supabase-icon-green-transparent.svg
+Supabase brand asset. Supabase name and logo are trademarks of Supabase, Inc.; use is for identification only.
+
+intellij-idea.svg
+Source: https://cdn.simpleicons.org/intellijidea
+Simple Icons icon for IntelliJ IDEA (SVG). Simple Icons icons are distributed under CC0; IntelliJ IDEA and JetBrains marks remain trademarks of JetBrains s.r.o.
+
+antigravity.svg
+Source: https://antigravity.google/assets/image/brand/antigravity-icon__full-color.svg
+Google Antigravity brand asset. Google Antigravity and its logo are trademarks of Google LLC; use is for identification only.
