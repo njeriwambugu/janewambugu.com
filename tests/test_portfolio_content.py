@@ -27,6 +27,25 @@ def skill_panel_markup(panel_id, following_panel_id):
 
 
 class PortfolioContentTests(unittest.TestCase):
+    def test_esoma_frontends_and_full_stack_admin_panel_are_present_as_role_outcome_cards(self):
+        projects = section_markup("projects")
+        expected = {
+            "eSoma — Teacher Frontend": "Frontend",
+            "eSoma — Admin Frontend": "Frontend",
+            "eSoma — Parent Frontend": "Frontend",
+            "Full-Stack Admin Panel": "Full-stack",
+        }
+        for title, role in expected.items():
+            with self.subTest(project=title):
+                card = re.search(
+                    rf'<(?:div|article)\b(?=[^>]*class="[^"]*project-card[^"]*")(?=[^>]*data-project-category="coding")[^>]*>(?:(?!</(?:div|article)>)[\s\S])*?{re.escape(title)}[\s\S]*?</(?:div|article)>',
+                    projects,
+                )
+                self.assertIsNotNone(card, f"Missing coding project card for {title}")
+                markup = card.group(0)
+                self.assertIn(f"Role: {role}", markup)
+                self.assertIn("Outcome:", markup)
+
     def test_contact_wheel_shows_discord_without_a_placeholder_profile_url(self):
         contact = section_markup("contact")
         self.assertIn('aria-label="Discord link coming soon"', contact)
