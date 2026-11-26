@@ -31,9 +31,9 @@ class PortfolioContentTests(unittest.TestCase):
         projects = section_markup("projects")
         expected = {
             "eSoma — Teacher Frontend": "Frontend",
-            "eSoma — Admin Frontend": "Frontend",
+            "eSoma — School Admin Frontend": "Frontend",
             "eSoma — Parent Frontend": "Frontend",
-            "Full-Stack Admin Panel": "Full-stack",
+            "System Admin Panel": "Full-stack",
         }
         for title, role in expected.items():
             with self.subTest(project=title):
@@ -45,6 +45,28 @@ class PortfolioContentTests(unittest.TestCase):
                 markup = card.group(0)
                 self.assertIn(f"Role: {role}", markup)
                 self.assertIn("Outcome:", markup)
+
+    def test_projects_anchor_has_clearance_below_the_fixed_navigation(self):
+        projects_css = re.search(r"#projects\s*\{([^}]*)\}", CSS, re.DOTALL)
+        self.assertIsNotNone(projects_css, "The Projects anchor needs its own scroll offset")
+        self.assertRegex(projects_css.group(1), r"scroll-margin-top\s*:\s*86px\s*;")
+
+    def test_text_only_esoma_and_system_admin_cards_can_shrink_to_content(self):
+        projects = section_markup("projects")
+        coding_articles = re.findall(
+            r'<article\b(?=[^>]*data-project-category="coding")[^>]*>', projects
+        )
+        text_only_articles = [tag for tag in coding_articles if "project-card--text-only" in tag]
+        self.assertEqual(len(text_only_articles), 4)
+        card_rule = re.search(r"\.project-card--text-only\s*\{([^}]*)\}", CSS, re.DOTALL)
+        description_rule = re.search(
+            r"\.project-card--text-only\s+\.project-desc\s*\{([^}]*)\}", CSS, re.DOTALL
+        )
+        self.assertIsNotNone(card_rule)
+        self.assertIsNotNone(description_rule)
+        self.assertRegex(card_rule.group(1), r"min-height\s*:\s*0\s*;")
+        self.assertRegex(card_rule.group(1), r"align-self\s*:\s*start\s*;")
+        self.assertRegex(description_rule.group(1), r"flex-grow\s*:\s*0\s*;")
 
     def test_contact_wheel_shows_discord_without_a_placeholder_profile_url(self):
         contact = section_markup("contact")
@@ -286,10 +308,24 @@ class PortfolioContentTests(unittest.TestCase):
             with self.subTest(logo=logo_path):
                 self.assertTrue((ROOT / logo_path).is_file(), f"Missing local skill logo: {logo_path}")
 
-    def test_hero_portrait_has_no_decorative_gold_circle_at_any_breakpoint(self):
+    def test_hero_portrait_has_a_decorative_abstract_shape_behind_the_photo(self):
         hero = section_markup("home")
-        self.assertNotIn("portrait-shape", hero)
-        self.assertNotIn("portrait-shape", CSS)
+        self.assertIn('<div class="profile-container">', hero)
+        self.assertRegex(
+            CSS,
+            r"\.profile-container::before\s*,\s*\.profile-container::after\s*\{[^}]*content\s*:\s*[\"']{2}",
+        )
+        backdrop_rule = re.search(r"\.profile-container::before\s*\{([^}]*)\}", CSS, re.DOTALL)
+        self.assertIsNotNone(backdrop_rule)
+        self.assertRegex(backdrop_rule.group(1), r"clip-path\s*:\s*polygon\(")
+        profile_image_rules = re.findall(r"\.profile-img\s*\{([^}]*)\}", CSS, re.DOTALL)
+        self.assertTrue(
+            any(
+                re.search(r"position\s*:\s*relative\s*;", rule)
+                and re.search(r"z-index\s*:\s*1\s*;", rule)
+                for rule in profile_image_rules
+            )
+        )
         self.assertNotIn("#725a16", CSS)
 
     def test_cv_download_uses_the_requested_real_pdf_filename(self):
@@ -309,6 +345,35 @@ class PortfolioContentTests(unittest.TestCase):
         self.assertIn('data-project-category="design"', HTML)
         contact = section_markup("contact")
         self.assertIn('href="mailto:jane@miraditechtribe.com"', contact)
+
+    def test_business_card_gallery_uses_real_canva_exports_and_design_links(self):
+        projects = section_markup("projects")
+        cards = re.findall(
+            r'<a\b(?=[^>]*class="[^"]*design-gallery-card[^"]*")[^>]*>[\s\S]*?</a>',
+            projects,
+        )
+        expected_designs = {
+            "images/business-cards/business-card-green-rose.png": "https://www.canva.com/d/qkt1vBnc9AHro5c",
+            "images/business-cards/business-card-emerald.png": "https://www.canva.com/d/HurI4Xvxv-PFfiE",
+            "images/business-cards/business-card-black-orange.png": "https://www.canva.com/d/AyNbEkwCl2suxkh",
+        }
+        self.assertEqual(len(cards), len(expected_designs))
+        preview_rule = re.search(r"\.design-gallery-card\s+\.project-img\s*\{([^}]*)\}", CSS, re.DOTALL)
+        self.assertIsNotNone(preview_rule)
+        self.assertRegex(preview_rule.group(1), r"object-fit\s*:\s*contain\s*;")
+        self.assertRegex(preview_rule.group(1), r"padding\s*:")
+        for image_path, canva_url in expected_designs.items():
+            with self.subTest(image=image_path):
+                self.assertTrue((ROOT / image_path).is_file(), f"Missing Canva export: {image_path}")
+                card = next((item for item in cards if image_path in item), None)
+                self.assertIsNotNone(card, f"Missing linked card for {image_path}")
+                self.assertIn(f'href="{canva_url}"', card)
+                self.assertIn('target="_blank"', card)
+                self.assertIn('rel="noopener noreferrer"', card)
+                self.assertRegex(card, r'<img\b[^>]*alt="[^"]+"')
+                self.assertIn("View in Canva", card)
+        for placeholder in ("design-brand-concept.svg", "design-social-concept.svg", "design-editorial-concept.svg"):
+            self.assertNotIn(placeholder, projects)
 
     def test_removed_approach_and_animation_styles_are_absent(self):
         self.assertIn("@media (prefers-reduced-motion: reduce)", CSS)

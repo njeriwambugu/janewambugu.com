@@ -317,6 +317,31 @@
      max-width: 450px;
  }
 
+ .profile-container::before,
+ .profile-container::after {
+     content: "";
+     position: absolute;
+     z-index: 0;
+     pointer-events: none;
+ }
+
+.profile-container::before {
+    inset: 3% 7% 2% 3%;
+    clip-path: polygon(9% 34%, 17% 12%, 37% 2%, 56% 10%, 76% 1%, 96% 19%, 91% 40%, 100% 59%, 84% 80%, 65% 90%, 47% 100%, 28% 88%, 9% 78%, 0 58%);
+    background: linear-gradient(145deg, rgba(212, 165, 116, 0.32), rgba(232, 180, 212, 0.16));
+    transform: rotate(-6deg);
+}
+
+ .profile-container::after {
+     top: 12%;
+     right: -6%;
+     width: 36%;
+     height: 20%;
+     border: 1px solid rgba(232, 180, 212, 0.55);
+     border-radius: 38% 62% 35% 65% / 52% 44% 56% 48%;
+     transform: rotate(24deg);
+ }
+
  .profile-img {
      width: 100%;
      height: auto;
@@ -473,6 +498,10 @@
      background: linear-gradient(135deg, #2a2521 0%, #3d3530 50%, #2a2521 100%);
  }
 
+ #projects {
+     scroll-margin-top: 86px;
+ }
+
  .projects-grid {
      display: grid;
      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -491,6 +520,11 @@
      backdrop-filter: blur(10px);
      -webkit-backdrop-filter: blur(10px);
      min-height: 400px;
+ }
+
+ .project-card--text-only {
+     min-height: 0;
+     align-self: start;
  }
 
  .project-card:hover {
@@ -525,6 +559,10 @@
      margin-bottom: 20px;
      line-height: 1.6;
      flex-grow: 1;
+ }
+
+ .project-card--text-only .project-desc {
+     flex-grow: 0;
  }
 
  .project-tags {
@@ -1675,6 +1713,7 @@ section {
 /* Profile image and graphic design board */
 .profile-img {
     position: relative;
+    z-index: 1;
     display: block;
     border-radius: 48% 48% 42% 42%;
 }
@@ -2132,7 +2171,7 @@ body {
     font-weight: 800;
     letter-spacing: .14em;
 }
-.design-gallery-card .project-img { background: #37302d; object-fit: cover; }
+.design-gallery-card .project-img { padding: .6rem; background: #37302d; object-fit: contain; }
 @media (max-width: 560px) {
     .project-filter { flex: 1 1 35%; }
     .projects-intro { margin-top: -1rem; }
